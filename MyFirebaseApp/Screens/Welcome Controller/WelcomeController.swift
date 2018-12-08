@@ -1,6 +1,6 @@
 //
 //  WelcomeController.swift
-//  MyAppTest
+//  MyFirebaseApp
 //
 //  Created by rasl on 02.12.2018.
 //  Copyright © 2018 rasl. All rights reserved.
@@ -11,16 +11,19 @@ import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
 
+
+
 class WelcomeController: UIViewController {
     
     private let signUpBuuton = UIButton()
     private let titleLabel = UILabel()
-    private let stackView = UIStackView()
-    private let stackViewButton = UIStackView()
-    private let signInLabel = UILabel()
-    private let emailButton = UIButton()
-    private let facebookButton = UIButton()
-    private let googleButton = UIButton()
+    
+    lazy var containerView: WelcomeContainerView = {
+        let view = WelcomeContainerView()
+        view.delegate = self
+        return view
+    }()
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +39,7 @@ class WelcomeController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if Auth.auth().currentUser != nil {
-            //showToTabBarVC()
+            StartRouter.shared.goToTabBarScrenn(from: self)
             
         }
     }
@@ -47,19 +50,6 @@ class WelcomeController: UIViewController {
     
     
     // MARK: - Actions
-    
-    @objc private func emailButtonTapped() {
-        StartRouter.shared.goTologinScreen(from: self)
-    }
-    
-    @objc private func facebookButtonTapped() {
-        showFasebookSignIn()
-    }
-    
-    @objc private func googleButtonTapped() {
-        GIDSignIn.sharedInstance().signIn()
-        
-    }
     
     @objc func signUpBuutonTapped() {
         StartRouter.shared.goToRegisterScreen(from: self)
@@ -75,57 +65,29 @@ private extension WelcomeController {
         delegateGoogle()
         addSignInBuuton()
         addTitleLabel()
-        addStackView()
-        addSignInLabel()
-        addStackViewBitton()
-        addEmailButton()
-        addFaceBookButton()
-        addGoogleButton()
+        addContainerView()
         addTargets()
         
     }
-    private func addEmailButton() {
-        emailButton.setImage(UIImage(named: "email" ), for: .normal)
+    
+    private func addContainerView() {
+        view.addSubview(containerView)
+        containerView.anchor(top: titleLabel.topAnchor,
+                             left: view.leftAnchor,
+                             bottom: nil,
+                             right: view.rightAnchor,
+                             paddingTop: 250,
+                             paddingLeft: 0,
+                             paddingBottom: 0,
+                             paddingRight: 0,
+                             width: 0, height: 0)
         
-        stackViewButton.addArrangedSubview(emailButton)
     }
     
-    private func addFaceBookButton() {
-        facebookButton.setImage(UIImage(named: "facebook" ), for: .normal)
-        stackViewButton.addArrangedSubview(facebookButton)
-        
-    }
-    
-    private func addGoogleButton() {
-        googleButton.setImage(UIImage(named: "google" ), for: .normal)
-        stackViewButton.addArrangedSubview(googleButton)
-        
-    }
     
     private func addTargets(){
-        emailButton.addTarget(self, action: #selector(emailButtonTapped), for: .touchUpInside)
-        facebookButton.addTarget(self, action: #selector(facebookButtonTapped), for: .touchUpInside)
-        googleButton.addTarget(self, action: #selector(googleButtonTapped), for: .touchUpInside)
         signUpBuuton.addTarget(self, action: #selector(signUpBuutonTapped), for: .touchUpInside)
-        
-        
-    }
     
-    private func addSignInLabel() {
-        signInLabel.text = "Sign In"
-        signInLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        signInLabel.textColor = #colorLiteral(red: 0.9568627451, green: 0.937254902, blue: 0.937254902, alpha: 1)
-        stackView.addArrangedSubview(signInLabel)
-        
-    }
-    
-    private func addStackViewBitton() {
-        stackViewButton.axis = .horizontal
-        stackViewButton.alignment = .fill
-        stackViewButton.distribution = .fill
-        stackViewButton.spacing = 20
-        stackView.addArrangedSubview(stackViewButton)
-        
     }
     
     private func addTitleLabel() {
@@ -140,26 +102,6 @@ private extension WelcomeController {
                           right: view.rightAnchor, paddingTop: 100,
                           paddingLeft: 20, paddingBottom: 0,
                           paddingRight: 20, width: 0, height: 0)
-        
-        
-    }
-    
-    private func addStackView() {
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        stackView.spacing = 50
-        view.addSubview(stackView)
-        
-        stackView.anchor(top: titleLabel.bottomAnchor,
-                         left: view.leftAnchor,
-                         bottom: nil,
-                         right: view.rightAnchor,
-                         paddingTop: 250,
-                         paddingLeft: 16,
-                         paddingBottom: 20,
-                         paddingRight: 16,
-                         width: 0, height: 0)
         
         
     }
@@ -181,10 +123,7 @@ private extension WelcomeController {
         
         
     }
-    
-    
-    
-    
+
     private func delegateGoogle() {
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
@@ -205,12 +144,14 @@ private extension WelcomeController {
                 return
             }
             
-            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+             let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
             
             Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
                 if let error = error {
                     print("Login error: \(error.localizedDescription)")
-                    let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                    let alertController = UIAlertController(title: "Login Error",
+                                                            message: error.localizedDescription,
+                                                            preferredStyle: .alert)
                     let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                     alertController.addAction(okayAction)
                     self.present(alertController, animated: true, completion: nil)
@@ -224,13 +165,15 @@ private extension WelcomeController {
     }
     
     private func loginWithGoogle(authentication: GIDAuthentication) {
-        
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
         
         Auth.auth().signInAndRetrieveData(with: credential) { (user, error) in
             if let error = error {
                 print("Login error: \(error.localizedDescription)")
-                let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Login Error",
+                                                        message: error.localizedDescription,
+                                                        preferredStyle: .alert)
                 let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 alertController.addAction(okayAction)
                 self.present(alertController, animated: true, completion: nil)
@@ -275,3 +218,19 @@ extension WelcomeController: GIDSignInDelegate, GIDSignInUIDelegate {
     }
 }
 
+// MARK: - WelcomeContainerViewDelegate
+
+extension WelcomeController: WelcomeContainerViewDelegate {
+    func emailTappedButton() {
+        StartRouter.shared.goTologinScreen(from: self)
+    }
+    
+    func facebookTappedButton() {
+        showFasebookSignIn()
+    }
+    
+    func googleTappedButton() {
+        GIDSignIn.sharedInstance().signIn()
+        
+    }
+}

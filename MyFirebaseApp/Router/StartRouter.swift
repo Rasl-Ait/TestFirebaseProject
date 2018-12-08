@@ -1,6 +1,6 @@
 //
 //  StartRouter.swift
-//  VKApp
+//  MyFirebaseApp
 //
 //  Created by rasl on 03.12.2018.
 //  Copyright © 2018 rasl. All rights reserved.
@@ -21,5 +21,10 @@ final class StartRouter {
     func goTologinScreen(from source: UIViewController) {
         let vc = LoginController()
         source.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func goToTabBarScrenn(from source: UIViewController) {
+        let tabBar = TabBarController()
+        source.present(tabBar, animated: true, completion: nil)
     }
 }

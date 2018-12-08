@@ -1,6 +1,6 @@
 //
 //  Extension+UIView.swift
-//  MyAppTest
+//  MyFirebaseApp
 //
 //  Created by rasl on 05.12.2018.
 //  Copyright © 2018 rasl. All rights reserved.
@@ -38,4 +38,7 @@ extension UIView {
         }
     }
     
+    func round() {
+        layer.cornerRadius = frame.height / 2
+    }
 }
