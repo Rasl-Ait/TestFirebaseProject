@@ -51,6 +51,7 @@
 		DCF0A16021BBE867000EE336 /* MyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF0A15F21BBE867000EE336 /* MyImage.swift */; };
 		DCF0A16321BBFA74000EE336 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF0A16221BBFA74000EE336 /* FavoriteController.swift */; };
 		DCF1ED6D21CD127E00B31E01 /* ImageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF1ED6C21CD127E00B31E01 /* ImageDetailController.swift */; };
+		DCF1ED7021CD234D00B31E01 /* PresentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF1ED6F21CD234D00B31E01 /* PresentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		DCF0A15F21BBE867000EE336 /* MyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImage.swift; sourceTree = "<group>"; };
 		DCF0A16221BBFA74000EE336 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
 		DCF1ED6C21CD127E00B31E01 /* ImageDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailController.swift; sourceTree = "<group>"; };
+		DCF1ED6F21CD234D00B31E01 /* PresentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 		DC68C25221CA44C700D87154 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DCF1ED6E21CD234300B31E01 /* Custom Controller View Transition */,
 				DC68C25321CA455E00D87154 /* Protocols */,
 				DCBD7D1B21BA995500ED2BD2 /* Network */,
 				DC98CFC221B909E400EDBB23 /* Api */,
@@ -341,6 +344,14 @@
 			path = "Image Detail Controller";
 			sourceTree = "<group>";
 		};
+		DCF1ED6E21CD234300B31E01 /* Custom Controller View Transition */ = {
+			isa = PBXGroup;
+			children = (
+				DCF1ED6F21CD234D00B31E01 /* PresentViewController.swift */,
+			);
+			path = "Custom Controller View Transition";
+			sourceTree = "<group>";
+		};
 		EF2ECF5960B4C8A1AE99DF4A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +521,7 @@
 				DC68C25921CA811F00D87154 /* AuthModel.swift in Sources */,
 				DCF1ED6D21CD127E00B31E01 /* ImageDetailController.swift in Sources */,
 				DCBD7D2D21BA999A00ED2BD2 /* UIImageView + Kingfisher.swift in Sources */,
+				DCF1ED7021CD234D00B31E01 /* PresentViewController.swift in Sources */,
 				DCBD7D2721BA997400ED2BD2 /* PixabayClient.swift in Sources */,
 				DC98CFC621B916ED00EDBB23 /* WelcomeContainerView.swift in Sources */,
 				DC72A8B321CB94510010AD61 /* ProfileUserController.swift in Sources */,

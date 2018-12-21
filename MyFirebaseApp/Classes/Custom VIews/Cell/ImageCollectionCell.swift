@@ -16,13 +16,13 @@ class ImageCollectionCell: UICollectionViewCell {
 	
 	static let reuseIdentifier = "ImageCollectionCell"
 	
-	let containerViewFirst = UIView()
-	let containerViewSecond = UIView()
-	let imagePixabay = UIImageView()
-	let likeImage = UIImageView()
-	let likeLabel = UILabel()
-	let stackView = UIStackView()
+	private let containerViewFirst = UIView()
+	private let containerViewSecond = UIView()
+	private let likeImage = UIImageView()
+	private let likeLabel = UILabel()
+	private let stackView = UIStackView()
 	let selectionImage = UIImageView()
+	let imagePixabay = UIImageView()
 	
 	var isSelect = false
 	var delegate: ImageCollectionDelegare?

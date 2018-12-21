@@ -15,6 +15,9 @@ class FavoriteController: UICollectionViewController {
 	private let profilename = UILabel()
 	private var trashButton = UIBarButtonItem()
 	
+	private let transition = PresentViewController()
+	 private var selectedImage: UIImageView?
+	
 	private var images: [Image] = []
 	private let minItemSpacing = 5.5
 	
@@ -89,6 +92,15 @@ class FavoriteController: UICollectionViewController {
 	
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if !isEditing {
+			guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
+			selectedImage = cell.imagePixabay
+	
+			let modelImage = images[indexPath.row]
+			let vc = ImageDetailController()
+		  vc.modelImage = modelImage
+			vc.transitioningDelegate = self
+			present(vc, animated: true, completion: nil)
+			
 			
 		} else {
 			trashButton.isEnabled = true
@@ -205,4 +217,19 @@ extension FavoriteController: UICollectionViewDelegateFlowLayout {
 }
 
 
+// MARK: - UIViewControllerTransitioningDelegate
 
+extension FavoriteController: UIViewControllerTransitioningDelegate {
+	func animationController(forPresented presented: UIViewController,
+													 presenting: UIViewController,
+													 source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		transition.originFrame = selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
+		transition.presenting = true
+		return transition
+	}
+	
+	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		transition.presenting = false
+		return transition
+	}
+}
