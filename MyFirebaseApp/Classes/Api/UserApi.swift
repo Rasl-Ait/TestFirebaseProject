@@ -18,7 +18,6 @@ class UserApi {
 			snapshot in
 			if let dict = snapshot.value as? [String: Any] {
 				let user = UserModel.transformUser(key: snapshot.key, dict: dict)
-				print(user.profileImageUrl)
 				completion(user)
 			}
 		}

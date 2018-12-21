@@ -14,9 +14,14 @@ class ImageApi {
     func observeImage(withId id: String, completion: @escaping ItemClosure<Image>) {
         REF_IMAGES.child(id).observeSingleEvent(of: .value) { (snapshot) in
             if let dict = snapshot.value as? [String: Any] {
-                let image = Image.transformImage(key: snapshot.key, dict: dict)
+							let image = Image.transformImage(snapshot: snapshot, dict: dict)
                 completion(image)
             }
         }
     }
+	
+	func filterDatabase() {
+		
+	
+	}
 }

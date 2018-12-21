@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import Firebase
 
 class Image {
+	var ref: DatabaseReference?
 	var userId: String?
 	var id: Int?
 	var username: String?
@@ -31,9 +33,10 @@ class Image {
 }
 
 extension Image {
-	static func transformImage(key: String, dict: [String: Any]) -> Image {
+	static func transformImage(snapshot: DataSnapshot, dict: [String: Any]) -> Image {
 		let image = Image()
-		image.userId = key
+		image.ref = snapshot.ref
+		image.userId = snapshot.key
 		image.id = dict["id"] as? Int
 		image.username = dict["username"] as? String
 		image.likeCount = dict["likeCount"] as? Int

@@ -10,6 +10,7 @@
 		3AD7867530AE4F483007AF46 /* Pods_MyFirebaseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395D4D9540014D7AB2BB4C0E /* Pods_MyFirebaseApp.framework */; };
 		DC68C25721CA459300D87154 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68C25621CA459300D87154 /* Typealiases.swift */; };
 		DC68C25921CA811F00D87154 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC68C25821CA811F00D87154 /* AuthModel.swift */; };
+		DC72A8B321CB94510010AD61 /* ProfileUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72A8B221CB94510010AD61 /* ProfileUserController.swift */; };
 		DC98CF9721B8EA6800EDBB23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98CF9621B8EA6800EDBB23 /* AppDelegate.swift */; };
 		DC98CF9C21B8EA6800EDBB23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC98CF9A21B8EA6800EDBB23 /* Main.storyboard */; };
 		DC98CF9E21B8EA6900EDBB23 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC98CF9D21B8EA6900EDBB23 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		DCF0A15E21BBDF54000EE336 /* HelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF0A15D21BBDF54000EE336 /* HelperService.swift */; };
 		DCF0A16021BBE867000EE336 /* MyImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF0A15F21BBE867000EE336 /* MyImage.swift */; };
 		DCF0A16321BBFA74000EE336 /* FavoriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF0A16221BBFA74000EE336 /* FavoriteController.swift */; };
+		DCF1ED6D21CD127E00B31E01 /* ImageDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF1ED6C21CD127E00B31E01 /* ImageDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +59,7 @@
 		8A11F918CBA84850004994F9 /* Pods-MyFirebaseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirebaseApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirebaseApp/Pods-MyFirebaseApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DC68C25621CA459300D87154 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		DC68C25821CA811F00D87154 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		DC72A8B221CB94510010AD61 /* ProfileUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserController.swift; sourceTree = "<group>"; };
 		DC98CF9321B8EA6800EDBB23 /* MyFirebaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFirebaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC98CF9621B8EA6800EDBB23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC98CF9B21B8EA6800EDBB23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 		DCF0A15D21BBDF54000EE336 /* HelperService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperService.swift; sourceTree = "<group>"; };
 		DCF0A15F21BBE867000EE336 /* MyImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyImage.swift; sourceTree = "<group>"; };
 		DCF0A16221BBFA74000EE336 /* FavoriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteController.swift; sourceTree = "<group>"; };
+		DCF1ED6C21CD127E00B31E01 /* ImageDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,14 @@
 				DC68C25621CA459300D87154 /* Typealiases.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DC72A8B121CB94370010AD61 /* Profile User Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DC72A8B221CB94510010AD61 /* ProfileUserController.swift */,
+			);
+			path = "Profile User Controller";
 			sourceTree = "<group>";
 		};
 		DC98CF8A21B8EA6800EDBB23 = {
@@ -205,6 +217,8 @@
 		DC98CFAD21B8FA8700EDBB23 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DCF1ED6B21CD123400B31E01 /* Image Detail Controller */,
+				DC72A8B121CB94370010AD61 /* Profile User Controller */,
 				DCF0A16121BBFA5B000EE336 /* Favorite Controller */,
 				DC98CFD521B9549A00EDBB23 /* Search Controller */,
 				DC98CFB621B8FB1400EDBB23 /* Login Controller */,
@@ -317,6 +331,14 @@
 				DCF0A16221BBFA74000EE336 /* FavoriteController.swift */,
 			);
 			path = "Favorite Controller";
+			sourceTree = "<group>";
+		};
+		DCF1ED6B21CD123400B31E01 /* Image Detail Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DCF1ED6C21CD127E00B31E01 /* ImageDetailController.swift */,
+			);
+			path = "Image Detail Controller";
 			sourceTree = "<group>";
 		};
 		EF2ECF5960B4C8A1AE99DF4A /* Pods */ = {
@@ -486,9 +508,11 @@
 				DCBD7D2321BA996E00ED2BD2 /* HTTPURLResponse.swift in Sources */,
 				DCBD7D2921BA999200ED2BD2 /* Alert.swift in Sources */,
 				DC68C25921CA811F00D87154 /* AuthModel.swift in Sources */,
+				DCF1ED6D21CD127E00B31E01 /* ImageDetailController.swift in Sources */,
 				DCBD7D2D21BA999A00ED2BD2 /* UIImageView + Kingfisher.swift in Sources */,
 				DCBD7D2721BA997400ED2BD2 /* PixabayClient.swift in Sources */,
 				DC98CFC621B916ED00EDBB23 /* WelcomeContainerView.swift in Sources */,
+				DC72A8B321CB94510010AD61 /* ProfileUserController.swift in Sources */,
 				DCF0A15C21BBDE09000EE336 /* ImageApi.swift in Sources */,
 				DC98CFBA21B8FB2900EDBB23 /* WelcomeController.swift in Sources */,
 				DC98CFD421B9524100EDBB23 /* TabBarController.swift in Sources */,

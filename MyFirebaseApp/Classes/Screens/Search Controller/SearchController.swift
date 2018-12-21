@@ -13,7 +13,7 @@ class SearchController: UICollectionViewController{
 	
 	private let searchController = UISearchController(searchResultsController: nil)
 	private var viewModel: SearchModelController!
-	private let minItemSpacing = 5
+	private let minItemSpacing = 5.5
 	
 	lazy var actitvityIndicatorView: UIActivityIndicatorView = {
 		let act = UIActivityIndicatorView()
@@ -28,6 +28,12 @@ class SearchController: UICollectionViewController{
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		initialized()
+		
+	}
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(true)
+		
 		
 	}
 	
@@ -47,6 +53,23 @@ class SearchController: UICollectionViewController{
 																									for: indexPath) as! ImageCollectionCell
 		
 		let image = viewModel.images(at: indexPath)
+		
+		let ref = Api.Image.REF_IMAGES.queryOrdered(byChild: "id").queryEqual(toValue: image.id)
+		
+		ref.observe(.value) { (snapshot)  in
+			if snapshot.exists() {
+				cell.selectionImage.image = UIImage(named: "checked")
+				cell.selectionImage.isUserInteractionEnabled = false
+				
+			}
+			else {
+				cell.selectionImage.image = UIImage(named: "unchecked")
+				cell.selectionImage.isUserInteractionEnabled = true
+				
+			}
+			
+			ref.removeAllObservers()
+		}
 		
 		cell.index = indexPath.item
 		cell.pixabayImage = image
@@ -82,7 +105,7 @@ private extension SearchController {
 	
 	private func setupCollectionView() {
 		collectionView.register(ImageCollectionCell.self, forCellWithReuseIdentifier: ImageCollectionCell.reuseIdentifier)
-		collectionView.contentInset = UIEdgeInsets(top: 10, left: 2, bottom: 20, right: 2)
+		collectionView.contentInset = UIEdgeInsets(top: 10, left: 1, bottom: 0, right: 1)
 		collectionView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 		
 	}
@@ -95,14 +118,13 @@ private extension SearchController {
 		
 		
 	}
-	
-	
+
 	private func setupSearchBar() {
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.searchBar.placeholder = "Search for a image"
-		//searchController.searchBar.tintColor = .white
+		searchController.searchBar.tintColor = .white
 		searchController.searchResultsUpdater = self
 		searchController.searchBar.delegate = self
 		definesPresentationContext = true
@@ -131,7 +153,7 @@ extension SearchController: UICollectionViewDelegateFlowLayout {
 											layout collectionViewLayout: UICollectionViewLayout,
 											sizeForItemAt indexPath: IndexPath) -> CGSize {
 		
-		let factor = traitCollection.horizontalSizeClass == .compact ? 2:3
+		let factor = traitCollection.horizontalSizeClass == .compact ? 3:2
 		let screenRect = collectionView.frame.size.width
 		let screenWidth = screenRect - (CGFloat(minItemSpacing) * CGFloat(factor + 1))
 		let cellWidth = screenWidth / CGFloat(factor)
@@ -184,6 +206,8 @@ extension SearchController: UISearchBarDelegate {
 	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
 		searchBar.setShowsCancelButton(false, animated: true)
 	}
+	
+	
 }
 
 // MARK: - SearchCellDelegare
@@ -199,12 +223,10 @@ extension SearchController: ImageCollectionDelegare {
 		imageModel.username = image.user
 		imageModel.likeCount = image.likes
 		imageModel.webformatUrl = image.webformatURL
-
-		HelperService.sendDataToDatabase(with: imageModel) {
-			
-		}
+		imageModel.userImageUrl = image.userImageURL
 		
-		//newPostRef.removeValue()
+		HelperService.filterDataToDatabase(with: imageModel) {}
+
 	}
 }
 

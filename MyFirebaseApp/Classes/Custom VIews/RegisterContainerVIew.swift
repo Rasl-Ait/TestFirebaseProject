@@ -21,11 +21,10 @@ final class RegisterContainerVIew: UIView {
 	private let nameTextField = UITextField()
 	private let emailTextField = UITextField()
 	private let passwordTextField = UITextField()
+	private let profileImageView = UIImageView()
 	let signUpButton = UIButton()
-	let profileImageView = UIImageView()
 	
 	var delegate: RegisterContainerVIewDelegate?
-	
 	var usernameTextChanged: ItemClosure<String>?
 	var emailTextChanged: ItemClosure<String>?
 	var passwordTextChanged: ItemClosure<String>?
@@ -43,12 +42,9 @@ final class RegisterContainerVIew: UIView {
 		
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
-	
 	func set(image: UIImage?) {
 		profileImageView.image = image
+
 	}
 	
 	private func addStackView() {
@@ -120,7 +116,7 @@ final class RegisterContainerVIew: UIView {
 	private func addPasswordTextField() {
 		passwordTextField.borderStyle = .roundedRect
 		passwordTextField.textAlignment = .left
-		//passwordTextField.isSecureTextEntry = true
+	  //passwordTextField.isSecureTextEntry = true
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
 																																 attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)])
 		
@@ -166,4 +162,9 @@ final class RegisterContainerVIew: UIView {
 		delegate?.addImage()
 		
 	}
+	
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
 }
+

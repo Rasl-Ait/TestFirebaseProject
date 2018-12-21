@@ -118,7 +118,7 @@ class LoginContainerView: UIView {
 	@objc private func passwordTextChanged(sender: UITextField) {
 		passwordTextChanged?(sender.text ?? "")
 	}
-
+	
 	@objc private func signInButtonTapped() {
 		delegate?.signInTappedButton()
 		

@@ -86,10 +86,10 @@ class ImageCollectionCell: UICollectionViewCell {
 		selectionImage.contentMode = .scaleToFill
 		containerViewSecond.addSubview(selectionImage)
 		
-		selectionImage.topAnchor.constraint(equalTo: containerViewSecond.topAnchor, constant: 10).isActive = true
+		selectionImage.topAnchor.constraint(equalTo: containerViewSecond.topAnchor, constant: 6).isActive = true
 		selectionImage.rightAnchor.constraint(equalTo: containerViewSecond.rightAnchor, constant: -6).isActive = true
-		selectionImage.heightAnchor.constraint(equalToConstant: 25).isActive = true
-		selectionImage.widthAnchor.constraint(equalToConstant: 25).isActive = true
+		selectionImage.heightAnchor.constraint(equalToConstant: 20).isActive = true
+		selectionImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
 		
 	}
 	
@@ -182,7 +182,6 @@ class ImageCollectionCell: UICollectionViewCell {
 		guard let image = image else { return }
 		likeLabel.text = String(image.likes)
 		imagePixabay.setImage(fromString: image.webformatURL, placeholder: UIImage(named: "logo_square"))
-		
 		
 	}
 	

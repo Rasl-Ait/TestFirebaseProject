@@ -29,26 +29,19 @@ class TabBarController: UITabBarController {
 	}
 	
 	func setupViewControllers() {
-		//home
+
 		let searchController = templateNavController(unselectedImage: #imageLiteral(resourceName: "Search.png"),
 																								 selectedImage: #imageLiteral(resourceName: "Search_Selected.png"),
 																								 rootViewController: SearchController(
 																								 collectionViewLayout: UICollectionViewFlowLayout()))
 		
-		//search
-		
 		let plusNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "star.png"), selectedImage: #imageLiteral(resourceName: "star.png"),
 																									rootViewController: FavoriteController(
 																									collectionViewLayout: UICollectionViewFlowLayout()))
 		
+		let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"),
+																												 rootViewController: ProfileUserController())
 		
-		
-		let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"))
-		
-		userProfileNavController.tabBarItem.image = #imageLiteral(resourceName: "profile_unselected")
-		userProfileNavController.tabBarItem.selectedImage = #imageLiteral(resourceName: "profile_selected")
-		
-		tabBar.tintColor = .black
 		
 		viewControllers = [searchController,
 											 plusNavController,

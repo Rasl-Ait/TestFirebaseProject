@@ -21,7 +21,6 @@ class WelcomeController: UIViewController {
 		return view
 	}()
 	
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		initialized()
@@ -36,7 +35,7 @@ class WelcomeController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(true)
 		if Auth.auth().currentUser != nil {
-		   //StartRouter.shared.goToTabBarScrenn(from: self)
+			StartRouter.shared.goToTabBarScrenn(from: self)
 			
 		}
 	}

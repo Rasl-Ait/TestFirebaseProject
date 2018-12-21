@@ -11,6 +11,7 @@ import Foundation
 class UserModel {
 	var email: String?
 	var profileImageUrl: UIImage?
+	var image: String?
 	var username: String?
 	var password: String?
 	var id: String?
@@ -36,10 +37,11 @@ extension UserModel {
 	static func transformUser(key: String, dict: [String: Any]) -> UserModel {
 		let user = UserModel()
 		user.email = dict["email"] as? String
-		user.profileImageUrl = dict["profileImageUrl"] as? UIImage
+		user.image = dict["profileImageUrl"] as? String
 		user.username = dict["username"] as? String
 		user.password = dict["password"] as? String
 		user.id = key
+		user.profileImageUrl = UIImage(named: user.image!)
 		return user
 	}
 }

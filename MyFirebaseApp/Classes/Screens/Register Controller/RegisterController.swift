@@ -75,8 +75,6 @@ private extension RegisterController {
 			self.userModel.password = text
 			self.updateDoneButtonStatus()
 		}
-		
-		containerView.set(image: userModel.profileImageUrl)
 	}
 	
 	private func addContainerView() {
@@ -153,8 +151,8 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
 			return
 		}
 		
-		containerView.profileImageView.image = image
 		userModel.profileImageUrl = image
+		containerView.set(image: userModel.profileImageUrl)
 		dismiss(animated: true, completion: nil)
 		
 	}
