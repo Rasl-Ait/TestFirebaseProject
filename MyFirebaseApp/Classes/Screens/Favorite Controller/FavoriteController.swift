@@ -27,6 +27,11 @@ class FavoriteController: UICollectionViewController {
 		
 	}
 	
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .lightContent
+		
+	}
+	
 	override func setEditing(_ editing: Bool, animated: Bool) {
 		super.setEditing(editing, animated: animated)
 		
@@ -148,11 +153,10 @@ private extension FavoriteController {
 	
 	private func fetchUser() {
 		guard let userId = Api.User.CURRENT_USER?.uid else { return }
-		Api.User.observeUser(withId: userId) { (user) in
+		Api.User.observeUser(withId: userId) { user in
 			self.profileImageView.setImage(fromString: user.image, placeholder: nil)
 			self.profilename.text = user.username
 		}
-		
 	}
 	
 	private func addStackView() {

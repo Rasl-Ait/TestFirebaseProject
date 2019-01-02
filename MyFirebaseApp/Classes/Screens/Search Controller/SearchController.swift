@@ -31,9 +31,8 @@ class SearchController: UICollectionViewController{
 		
 	}
 	
-	override func viewDidDisappear(_ animated: Bool) {
-		super.viewDidDisappear(true)
-		
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .lightContent
 		
 	}
 	
@@ -92,7 +91,6 @@ class SearchController: UICollectionViewController{
 	}
 }
 
-
 private extension SearchController {
 	private func initialized() {
 		view.backgroundColor = .white
@@ -125,13 +123,10 @@ private extension SearchController {
 		searchController.dimsBackgroundDuringPresentation = false
 		searchController.searchBar.placeholder = "Search for a image"
 		searchController.searchBar.tintColor = .white
-		searchController.searchResultsUpdater = self
 		searchController.searchBar.delegate = self
 		definesPresentationContext = true
 		
 	}
-	
-	
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -166,7 +161,7 @@ extension SearchController: UICollectionViewDelegateFlowLayout {
 // MARK: - SearchControllerModelDelegate
 
 extension SearchController: SearchModelControllerDelegate, AlertDisplayer {
-	func onFetchCompleted(with images: [PixabayImage]) {
+	func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?, images: [PixabayImage]) {
 		actitvityIndicatorView.stopAnimating()
 		collectionView.isHidden = false
 		collectionView.reloadData()
@@ -178,36 +173,32 @@ extension SearchController: SearchModelControllerDelegate, AlertDisplayer {
 		let title = "Warning"
 		let action = UIAlertAction(title: "OK", style: .default)
 		displayAlert(with: title , message: reason, actions: [action])
-	}
-}
-
-
-extension SearchController: UISearchResultsUpdating {
-	func updateSearchResults(for searchController: UISearchController) {
-		if let searchText = searchController.searchBar.text {
-			if searchText != "" {
-				actitvityIndicatorView.startAnimating()
-				viewModel.searchText(searchText)
-				viewModel.currentPage = 1
-				viewModel.fetchSearchImage(true)
-			} else {
-				viewModel.imagesArray.removeAll()
-				collectionView.reloadData()
-			}
-		}
+		
 	}
 }
 
 extension SearchController: UISearchBarDelegate {
 	func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 		searchBar.setShowsCancelButton(true, animated: true)
+		viewModel.imagesArray.removeAll()
+		collectionView.reloadData()
 	}
 	
 	func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
 		searchBar.setShowsCancelButton(false, animated: true)
 	}
 	
-	
+	func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+		if let searchText = searchController.searchBar.text {
+			if searchText != "" {
+				actitvityIndicatorView.startAnimating()
+				viewModel.searchText(searchText)
+				viewModel.currentPage = 1
+				viewModel.fetchSearchImage(true)
+				
+			}
+		}
+	}
 }
 
 // MARK: - SearchCellDelegare

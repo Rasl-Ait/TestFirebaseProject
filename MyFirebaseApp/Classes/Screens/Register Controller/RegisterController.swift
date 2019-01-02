@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import ARSLineProgress
 
 class RegisterController: UIViewController {
 	
-	private let userModel = UserModel()
+	private let userModel = RegisterModel()
 	
 	private var selectedImage: UIImage?
 	private let button = UIButton()
@@ -126,11 +127,15 @@ private extension RegisterController {
 extension RegisterController: RegisterContainerVIewDelegate {
 	func signUpTappedButton() {
 		view.endEditing(true)
-		AuthService.register(with: userModel, onSuccess: {
-			ProgressHUD.showSuccess("Success")
-			StartRouter.shared.goToTabBarScrenn(from: self)
-		}) { (error) in
-			ProgressHUD.showError(error!)
+		ProgressHUD.show("Waiting...")
+		AuthService.register(with: userModel) { result in
+			switch result {
+			case .success(_):
+				ProgressHUD.showSuccess("Success")
+				StartRouter.shared.goToTabBarScrenn(from: self)
+			case .failure(let error):
+				ProgressHUD.showError(error.localizedDescription)
+			}
 		}
 	}
 	
@@ -151,14 +156,14 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
 			return
 		}
 		
+		picker.dismiss(animated: true, completion: nil)
 		userModel.profileImageUrl = image
 		containerView.set(image: userModel.profileImageUrl)
-		dismiss(animated: true, completion: nil)
 		
 	}
 	
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		dismiss(animated: true, completion: nil)
+		picker.dismiss(animated: true, completion: nil)
 		
 	}
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ARSLineProgress
 
 class LoginController: UIViewController {
 	
@@ -121,11 +122,16 @@ private extension LoginController {
 
 extension LoginController: LoginContainerViewDelegate {
 	func signInTappedButton() {
-		AuthService.signIn(with: authModel, onSuccess: {
+		view.endEditing(true)
+		ProgressHUD.show("Waiting...")
+		AuthService.signIn(with: authModel) { result in
+			switch result {
+			case .success:
 			ProgressHUD.showSuccess("Success")
-			StartRouter.shared.goToTabBarScrenn(from: self)
-		}) { (error) in
-			ProgressHUD.showError(error!)
+				StartRouter.shared.goToTabBarScrenn(from: self)
+			case .error(let error):
+					ProgressHUD.showError(error)
+			}
 		}
 	}
 }
