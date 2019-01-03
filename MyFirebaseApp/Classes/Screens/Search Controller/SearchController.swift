@@ -9,21 +9,14 @@
 import UIKit
 import Firebase
 
-class SearchController: UICollectionViewController{
+class SearchController: UICollectionViewController {
 	
 	private let searchController = UISearchController(searchResultsController: nil)
 	private var viewModel: SearchModelController!
 	private let minItemSpacing = 5.5
-	
-	lazy var actitvityIndicatorView: UIActivityIndicatorView = {
-		let act = UIActivityIndicatorView()
-		act.translatesAutoresizingMaskIntoConstraints = false
-		act.color = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-		act.hidesWhenStopped = true
-		act.isHidden = true
-		return act
-		
-	}()
+	private let actitvityIndicatorView = UIActivityIndicatorView()
+	private let transition = PresentViewController()
+	private var selectedImage: UIImageView?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -57,26 +50,25 @@ class SearchController: UICollectionViewController{
 		
 		ref.observe(.value) { (snapshot)  in
 			if snapshot.exists() {
-				cell.selectionImage.image = UIImage(named: "checked")
-				cell.selectionImage.isUserInteractionEnabled = false
-				
-			}
-			else {
-				cell.selectionImage.image = UIImage(named: "unchecked")
-				cell.selectionImage.isUserInteractionEnabled = true
-				
+				cell.selectionImage(with: "checked", isEnabled: false)
+			} else {
+				cell.selectionImage(with: "unchecked", isEnabled: true)
 			}
 			
 			ref.removeAllObservers()
 		}
 		
-		cell.index = indexPath.item
+		cell.buttonClicked = { _ in
+			let index = indexPath.item
+			self.selectedSaveImage(with: index)
+			
+		}
+		
 		cell.pixabayImage = image
 		cell.delegate = self
 		
 		return cell
 	}
-	
 	
 	// MARK: - Collection view delegate
 	
@@ -89,6 +81,18 @@ class SearchController: UICollectionViewController{
 			
 		}
 	}
+	
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+			guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
+			selectedImage = cell.containerImageView.imagePixabay
+			
+			let model = viewModel.images(at: indexPath)
+			let vc = ImageDetailController()
+			vc.modelPixabayImage = model
+			vc.transitioningDelegate = self
+			present(vc, animated: true, completion: nil)
+		
+	}
 }
 
 private extension SearchController {
@@ -96,7 +100,7 @@ private extension SearchController {
 		view.backgroundColor = .white
 		setupSearchBar()
 		setupCollectionView()
-		setupActitvityIndicator()
+		addActitvityIndicator()
 		
 		viewModel = SearchModelController(delegate: self)
 	}
@@ -108,15 +112,18 @@ private extension SearchController {
 		
 	}
 	
-	private func setupActitvityIndicator() {
+	private func addActitvityIndicator() {
+		actitvityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+		actitvityIndicatorView.color = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
+		actitvityIndicatorView.hidesWhenStopped = true
+		actitvityIndicatorView.isHidden = true
 		view.addSubview(actitvityIndicatorView)
 		
 		actitvityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 		actitvityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 		
-		
 	}
-
+	
 	private func setupSearchBar() {
 		navigationItem.searchController = searchController
 		navigationItem.hidesSearchBarWhenScrolling = false
@@ -125,6 +132,23 @@ private extension SearchController {
 		searchController.searchBar.tintColor = .white
 		searchController.searchBar.delegate = self
 		definesPresentationContext = true
+		
+	}
+	
+	func selectedSaveImage(with index: Int) {
+		
+		let image = viewModel.imagesArray[index]
+		
+		let imageModel = Image()
+		
+		imageModel.id = image.id
+		imageModel.largeImageUrl = image.largeImageURL
+		imageModel.username = image.user
+		imageModel.likeCount = image.likes
+		imageModel.webformatUrl = image.webformatURL
+		imageModel.userImageUrl = image.userImageURL
+		
+		HelperService.filterDataToDatabase(with: imageModel) {}
 		
 	}
 }
@@ -171,8 +195,7 @@ extension SearchController: SearchModelControllerDelegate, AlertDisplayer {
 	func onFetchFailed(with reason: String) {
 		actitvityIndicatorView.stopAnimating()
 		let title = "Warning"
-		let action = UIAlertAction(title: "OK", style: .default)
-		displayAlert(with: title , message: reason, actions: [action])
+		displayAlert(with: title , message: reason)
 		
 	}
 }
@@ -206,19 +229,26 @@ extension SearchController: UISearchBarDelegate {
 extension SearchController: ImageCollectionDelegare {
 	func selectedSaveImage(at index: Int) {
 		let image = viewModel.imagesArray[index]
-		
-		let imageModel = Image()
-		
-		imageModel.id = image.id
-		imageModel.largeImageUrl = image.largeImageURL
-		imageModel.username = image.user
-		imageModel.likeCount = image.likes
-		imageModel.webformatUrl = image.webformatURL
-		imageModel.userImageUrl = image.userImageURL
-		
+		let imageModel = Image.saveImageData(with: image)
 		HelperService.filterDataToDatabase(with: imageModel) {}
-
+		
 	}
 }
 
+// MARK: - UIViewControllerTransitioningDelegate
+
+extension SearchController: UIViewControllerTransitioningDelegate {
+	func animationController(forPresented presented: UIViewController,
+													 presenting: UIViewController,
+													 source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		transition.originFrame = selectedImage!.superview!.convert(selectedImage!.frame, to: nil)
+		transition.presenting = true
+		return transition
+	}
+	
+	func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+		transition.presenting = false
+		return transition
+	}
+}
 

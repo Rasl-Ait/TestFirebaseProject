@@ -17,7 +17,7 @@ final class PhotoView: UIView {
 		super.didMoveToSuperview()
 		Decorator.decorate(self)
 		addButton()
-	  addImageView()
+		addImageView()
 		addTargets()
 	}
 	
@@ -31,7 +31,7 @@ final class PhotoView: UIView {
 	
 	func set(image: UIImage?) {
 		imageView.image = image
-	
+		
 	}
 	
 	func setImage(image: String?) {
@@ -73,7 +73,7 @@ final class PhotoView: UIView {
 extension PhotoView {
 	fileprivate final class Decorator {
 		static func decorate(_ view: PhotoView) {
-					view.backgroundColor = .white
+			view.backgroundColor = .white
 		}
 		
 		static func layoutSubviews(_ view: PhotoView) {

@@ -44,7 +44,7 @@ final class RegisterContainerVIew: UIView {
 	
 	func set(image: UIImage?) {
 		profileImageView.image = image
-
+		
 	}
 	
 	private func addStackView() {
@@ -54,15 +54,9 @@ final class RegisterContainerVIew: UIView {
 		stackView.spacing = 40
 		addSubview(stackView)
 		
-		stackView.anchor(top: topAnchor,
-										 left: leftAnchor,
-										 bottom: bottomAnchor,
-										 right: rightAnchor,
-										 paddingTop: 0,
-										 paddingLeft: 16,
-										 paddingBottom: 20,
-										 paddingRight: 16,
-										 width: 0, height: 0)
+		stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor,
+										 right: rightAnchor, paddingTop: 0, paddingLeft: 16,
+										 paddingBottom: 20, paddingRight: 16, width: 0, height: 0)
 		
 	}
 	
@@ -116,7 +110,7 @@ final class RegisterContainerVIew: UIView {
 	private func addPasswordTextField() {
 		passwordTextField.borderStyle = .roundedRect
 		passwordTextField.textAlignment = .left
-	  //passwordTextField.isSecureTextEntry = true
+		//passwordTextField.isSecureTextEntry = true
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
 																																 attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)])
 		
@@ -140,7 +134,7 @@ final class RegisterContainerVIew: UIView {
 		passwordTextField.addTarget(self, action: #selector(passwordTextChanged(sender:)), for: .editingChanged)
 		
 	}
-
+	
 	@objc private func usernameTextChanged(sender: UITextField) {
 		usernameTextChanged?(sender.text ?? "")
 	}

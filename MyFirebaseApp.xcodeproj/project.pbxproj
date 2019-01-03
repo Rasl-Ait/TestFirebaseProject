@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3AD7867530AE4F483007AF46 /* Pods_MyFirebaseApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395D4D9540014D7AB2BB4C0E /* Pods_MyFirebaseApp.framework */; };
+		DC09C7F821DCEB5E0051D718 /* ImageCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09C7F721DCEB5E0051D718 /* ImageCellView.swift */; };
 		DC1B7A5B21CF639100E2BBFD /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B7A5A21CF639100E2BBFD /* ButtonView.swift */; };
 		DC1B7A5E21CF685B00E2BBFD /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B7A5D21CF685B00E2BBFD /* ButtonCell.swift */; };
-		DC674E7521D67B3500BB7E8D /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7421D67B3500BB7E8D /* StorageManager.swift */; };
 		DC674E7721D67C6700BB7E8D /* AuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7621D67C6700BB7E8D /* AuthResult.swift */; };
 		DC674E7921D67C7000BB7E8D /* RegisterErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7821D67C7000BB7E8D /* RegisterErrors.swift */; };
 		DC674E7B21D67CEB00BB7E8D /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7A21D67CEB00BB7E8D /* Validator.swift */; };
@@ -19,7 +19,6 @@
 		DC72A8B321CB94510010AD61 /* ProfileUserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72A8B221CB94510010AD61 /* ProfileUserController.swift */; };
 		DC88697F21CE3F2100DB0F2A /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88697E21CE3F2100DB0F2A /* PhotoView.swift */; };
 		DC88698121CE40DE00DB0F2A /* Extensions+NSLayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88698021CE40DE00DB0F2A /* Extensions+NSLayoutConstraint.swift */; };
-		DC88698321CE412A00DB0F2A /* PhotoUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88698221CE412A00DB0F2A /* PhotoUserCell.swift */; };
 		DC88698521CE6BF900DB0F2A /* CellHeaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88698421CE6BF800DB0F2A /* CellHeaderProtocol.swift */; };
 		DC98CF9721B8EA6800EDBB23 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98CF9621B8EA6800EDBB23 /* AppDelegate.swift */; };
 		DC98CF9C21B8EA6800EDBB23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC98CF9A21B8EA6800EDBB23 /* Main.storyboard */; };
@@ -41,7 +40,6 @@
 		DC98CFD121B9501B00EDBB23 /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = DC98CFCF21B9501B00EDBB23 /* ProgressHUD.m */; };
 		DC98CFD421B9524100EDBB23 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98CFD321B9524100EDBB23 /* TabBarController.swift */; };
 		DC98CFD721B954C500EDBB23 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98CFD621B954C500EDBB23 /* SearchController.swift */; };
-		DCBD7D1D21BA996300ED2BD2 /* DataResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD7D1C21BA996300ED2BD2 /* DataResponseError.swift */; };
 		DCBD7D1F21BA996500ED2BD2 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD7D1E21BA996500ED2BD2 /* Endpoint.swift */; };
 		DCBD7D2121BA996900ED2BD2 /* GenericAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD7D2021BA996900ED2BD2 /* GenericAPIClient.swift */; };
 		DCBD7D2321BA996E00ED2BD2 /* HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBD7D2221BA996E00ED2BD2 /* HTTPURLResponse.swift */; };
@@ -70,9 +68,9 @@
 		379B3BE4F9D763A2C629F620 /* Pods-MyFirebaseApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirebaseApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirebaseApp/Pods-MyFirebaseApp.release.xcconfig"; sourceTree = "<group>"; };
 		395D4D9540014D7AB2BB4C0E /* Pods_MyFirebaseApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirebaseApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A11F918CBA84850004994F9 /* Pods-MyFirebaseApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirebaseApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirebaseApp/Pods-MyFirebaseApp.debug.xcconfig"; sourceTree = "<group>"; };
+		DC09C7F721DCEB5E0051D718 /* ImageCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellView.swift; sourceTree = "<group>"; };
 		DC1B7A5A21CF639100E2BBFD /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		DC1B7A5D21CF685B00E2BBFD /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
-		DC674E7421D67B3500BB7E8D /* StorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		DC674E7621D67C6700BB7E8D /* AuthResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResult.swift; sourceTree = "<group>"; };
 		DC674E7821D67C7000BB7E8D /* RegisterErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterErrors.swift; sourceTree = "<group>"; };
 		DC674E7A21D67CEB00BB7E8D /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 		DC72A8B221CB94510010AD61 /* ProfileUserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserController.swift; sourceTree = "<group>"; };
 		DC88697E21CE3F2100DB0F2A /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		DC88698021CE40DE00DB0F2A /* Extensions+NSLayoutConstraint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extensions+NSLayoutConstraint.swift"; sourceTree = "<group>"; };
-		DC88698221CE412A00DB0F2A /* PhotoUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUserCell.swift; sourceTree = "<group>"; };
 		DC88698421CE6BF800DB0F2A /* CellHeaderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellHeaderProtocol.swift; sourceTree = "<group>"; };
 		DC98CF9321B8EA6800EDBB23 /* MyFirebaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFirebaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC98CF9621B8EA6800EDBB23 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,7 +104,6 @@
 		DC98CFCF21B9501B00EDBB23 /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		DC98CFD321B9524100EDBB23 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		DC98CFD621B954C500EDBB23 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
-		DCBD7D1C21BA996300ED2BD2 /* DataResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataResponseError.swift; sourceTree = "<group>"; };
 		DCBD7D1E21BA996500ED2BD2 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		DCBD7D2021BA996900ED2BD2 /* GenericAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericAPIClient.swift; sourceTree = "<group>"; };
 		DCBD7D2221BA996E00ED2BD2 /* HTTPURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPURLResponse.swift; sourceTree = "<group>"; };
@@ -152,6 +148,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC09C7F621DCEB320051D718 /* Image View */ = {
+			isa = PBXGroup;
+			children = (
+				DC09C7F721DCEB5E0051D718 /* ImageCellView.swift */,
+			);
+			path = "Image View";
+			sourceTree = "<group>";
+		};
 		DC1B7A5921CF637500E2BBFD /* Button View */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,10 +172,21 @@
 			path = "Button Cell";
 			sourceTree = "<group>";
 		};
+		DC1B821521DE187A0044E815 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				DC674E7621D67C6700BB7E8D /* AuthResult.swift */,
+				DC674E7821D67C7000BB7E8D /* RegisterErrors.swift */,
+				DC674E7A21D67CEB00BB7E8D /* Validator.swift */,
+				DCBD7D2421BA997100ED2BD2 /* Result.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		DC68C25221CA44C700D87154 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DC674E7A21D67CEB00BB7E8D /* Validator.swift */,
+				DC1B821521DE187A0044E815 /* Errors */,
 				DCF1ED6E21CD234300B31E01 /* Custom Controller View Transition */,
 				DC68C25321CA455E00D87154 /* Protocols */,
 				DCBD7D1B21BA995500ED2BD2 /* Network */,
@@ -310,9 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				DC98CFC021B9021100EDBB23 /* RegisterModel.swift */,
-				DC674E7621D67C6700BB7E8D /* AuthResult.swift */,
 				DCBD7D2E21BA99B300ED2BD2 /* PixabayImage.swift */,
-				DC674E7821D67C7000BB7E8D /* RegisterErrors.swift */,
 				DCBD7D3021BA9ABA00ED2BD2 /* Image.swift */,
 				DC68C25821CA811F00D87154 /* AuthModel.swift */,
 			);
@@ -326,7 +339,6 @@
 				DCF0A15921BBDD5E000EE336 /* UserApi.swift */,
 				DCF0A15B21BBDE09000EE336 /* ImageApi.swift */,
 				DCF0A15D21BBDF54000EE336 /* HelperService.swift */,
-				DC674E7421D67B3500BB7E8D /* StorageManager.swift */,
 				DC98CFC321B909F200EDBB23 /* AuthService.swift */,
 				DCF0A15F21BBE867000EE336 /* MyImage.swift */,
 			);
@@ -336,6 +348,7 @@
 		DC98CFC721B943D000EDBB23 /* Custom VIews */ = {
 			isa = PBXGroup;
 			children = (
+				DC09C7F621DCEB320051D718 /* Image View */,
 				DC1B7A5921CF637500E2BBFD /* Button View */,
 				DCF9525C21CE727E000B6C28 /* Text Info View */,
 				DC88697D21CE3F0600DB0F2A /* Photo View */,
@@ -368,10 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				DCBD7D1E21BA996500ED2BD2 /* Endpoint.swift */,
-				DCBD7D1C21BA996300ED2BD2 /* DataResponseError.swift */,
 				DCBD7D2021BA996900ED2BD2 /* GenericAPIClient.swift */,
 				DCBD7D2221BA996E00ED2BD2 /* HTTPURLResponse.swift */,
-				DCBD7D2421BA997100ED2BD2 /* Result.swift */,
 				DCBD7D2621BA997400ED2BD2 /* PixabayClient.swift */,
 			);
 			path = Network;
@@ -383,7 +394,6 @@
 				DC1B7A5C21CF683D00E2BBFD /* Button Cell */,
 				DCF9525921CE7150000B6C28 /* Text Field info Cell */,
 				DCF9525721CE7134000B6C28 /* Image Cell */,
-				DCF9525821CE7145000B6C28 /* Photo user Cell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -418,14 +428,6 @@
 				DCBD7D3721BAA5A800ED2BD2 /* ImageCollectionCell.swift */,
 			);
 			path = "Image Cell";
-			sourceTree = "<group>";
-		};
-		DCF9525821CE7145000B6C28 /* Photo user Cell */ = {
-			isa = PBXGroup;
-			children = (
-				DC88698221CE412A00DB0F2A /* PhotoUserCell.swift */,
-			);
-			path = "Photo user Cell";
 			sourceTree = "<group>";
 		};
 		DCF9525921CE7150000B6C28 /* Text Field info Cell */ = {
@@ -608,20 +610,19 @@
 				DC98CFB321B8FAB900EDBB23 /* StartRouter.swift in Sources */,
 				DCBD7D3121BA9ABA00ED2BD2 /* Image.swift in Sources */,
 				DCBD7D2121BA996900ED2BD2 /* GenericAPIClient.swift in Sources */,
+				DC09C7F821DCEB5E0051D718 /* ImageCellView.swift in Sources */,
 				DCBD7D2321BA996E00ED2BD2 /* HTTPURLResponse.swift in Sources */,
 				DC88698521CE6BF900DB0F2A /* CellHeaderProtocol.swift in Sources */,
 				DCBD7D2921BA999200ED2BD2 /* Alert.swift in Sources */,
 				DC1B7A5B21CF639100E2BBFD /* ButtonView.swift in Sources */,
 				DC68C25921CA811F00D87154 /* AuthModel.swift in Sources */,
 				DC674E7721D67C6700BB7E8D /* AuthResult.swift in Sources */,
-				DC88698321CE412A00DB0F2A /* PhotoUserCell.swift in Sources */,
 				DCF1ED6D21CD127E00B31E01 /* ImageDetailController.swift in Sources */,
 				DCBD7D2D21BA999A00ED2BD2 /* UIImageView + Kingfisher.swift in Sources */,
 				DCF1ED7021CD234D00B31E01 /* PresentViewController.swift in Sources */,
 				DCBD7D2721BA997400ED2BD2 /* PixabayClient.swift in Sources */,
 				DC98CFC621B916ED00EDBB23 /* WelcomeContainerView.swift in Sources */,
 				DC72A8B321CB94510010AD61 /* ProfileUserController.swift in Sources */,
-				DC674E7521D67B3500BB7E8D /* StorageManager.swift in Sources */,
 				DCF0A15C21BBDE09000EE336 /* ImageApi.swift in Sources */,
 				DC98CFBA21B8FB2900EDBB23 /* WelcomeController.swift in Sources */,
 				DC98CFD421B9524100EDBB23 /* TabBarController.swift in Sources */,
@@ -650,7 +651,6 @@
 				DC98CFAF21B8FAA700EDBB23 /* Extension+UIView.swift in Sources */,
 				DCF0A15E21BBDF54000EE336 /* HelperService.swift in Sources */,
 				DCBD7D2521BA997100ED2BD2 /* Result.swift in Sources */,
-				DCBD7D1D21BA996300ED2BD2 /* DataResponseError.swift in Sources */,
 				DC674E7B21D67CEB00BB7E8D /* Validator.swift in Sources */,
 				DC68C25721CA459300D87154 /* Typealiases.swift in Sources */,
 				DC98CFCB21B94C6D00EDBB23 /* LoginContainerView.swift in Sources */,
@@ -805,7 +805,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyFirebaseApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rasl.MyFirebaseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyFirebaseApp/MyFirebaseApp-Bridging-Header.h";
@@ -823,7 +826,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MyFirebaseApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rasl.MyFirebaseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyFirebaseApp/MyFirebaseApp-Bridging-Header.h";

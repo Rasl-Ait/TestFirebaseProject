@@ -115,15 +115,15 @@ class AuthService {
 	}
 	
 	static func updateUserInfor(with model: RegisterModel, completion: @escaping ResultHandler<Void>) {
-//		guard model.isFilled else {
-//			completion(.failure(RegisterErrors.unknownError))
-//			return
-//		}
+		//		guard model.isFilled else {
+		//			completion(.failure(RegisterErrors.unknownError))
+		//			return
+		//		}
 		guard let username = model.username, let email = model.email else {
 			completion(.failure(RegisterErrors.unknownError))
 			return
 		}
-
+		
 		Api.User.CURRENT_USER?.updateEmail(to: email) { (error) in
 			if let error = error {
 				completion(.failure(error))

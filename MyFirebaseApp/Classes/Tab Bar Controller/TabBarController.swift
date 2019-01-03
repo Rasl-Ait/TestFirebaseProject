@@ -29,15 +29,15 @@ class TabBarController: UITabBarController {
 	}
 	
 	func setupViewControllers() {
-
+		
 		let searchController = templateNavController(unselectedImage: #imageLiteral(resourceName: "Search.png"),
 																								 selectedImage: #imageLiteral(resourceName: "Search_Selected.png"),
 																								 rootViewController: SearchController(
-																								 collectionViewLayout: UICollectionViewFlowLayout()))
+																									collectionViewLayout: UICollectionViewFlowLayout()))
 		
 		let plusNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "star.png"), selectedImage: #imageLiteral(resourceName: "star.png"),
 																									rootViewController: FavoriteController(
-																									collectionViewLayout: UICollectionViewFlowLayout()))
+																										collectionViewLayout: UICollectionViewFlowLayout()))
 		
 		let userProfileNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "profile_unselected"), selectedImage: #imageLiteral(resourceName: "profile_selected"),
 																												 rootViewController: ProfileUserController())

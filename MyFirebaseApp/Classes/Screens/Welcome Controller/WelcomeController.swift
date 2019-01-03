@@ -58,15 +58,9 @@ private extension WelcomeController {
 	
 	private func addContainerView() {
 		view.addSubview(containerView)
-		containerView.anchor(top: titleLabel.topAnchor,
-												 left: view.leftAnchor,
-												 bottom: nil,
-												 right: view.rightAnchor,
-												 paddingTop: 250,
-												 paddingLeft: 0,
-												 paddingBottom: 0,
-												 paddingRight: 0,
-												 width: 0, height: 0)
+		containerView.anchor(top: titleLabel.topAnchor, left: view.leftAnchor, bottom: nil,
+												 right: view.rightAnchor, paddingTop: 250, paddingLeft: 0,
+												 paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
 		
 	}
 	
@@ -78,11 +72,9 @@ private extension WelcomeController {
 		titleLabel.textAlignment = .center
 		view.addSubview(titleLabel)
 		
-		titleLabel.anchor(top: view.topAnchor, left: view.leftAnchor,
-											bottom: nil,
-											right: view.rightAnchor, paddingTop: 100,
-											paddingLeft: 20, paddingBottom: 0,
-											paddingRight: 20, width: 0, height: 0)
+		titleLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil,
+											right: view.rightAnchor, paddingTop: 100, paddingLeft: 20,
+											paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
 		
 		
 	}

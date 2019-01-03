@@ -16,17 +16,16 @@ class ImageCollectionCell: UICollectionViewCell {
 	
 	static let reuseIdentifier = "ImageCollectionCell"
 	
-	private let containerViewFirst = UIView()
-	private let containerViewSecond = UIView()
-	private let likeImage = UIImageView()
-	private let likeLabel = UILabel()
-	private let stackView = UIStackView()
-	let selectionImage = UIImageView()
-	let imagePixabay = UIImageView()
+	let containerImageView = ImageCellView()
+	
+	var buttonClicked: ItemClosure<Int>? {
+		didSet {
+			containerImageView.clicked = buttonClicked
+		}
+	}
 	
 	var isSelect = false
 	var delegate: ImageCollectionDelegare?
-	var index: Int!
 	
 	var image: Image? {
 		didSet {
@@ -42,171 +41,58 @@ class ImageCollectionCell: UICollectionViewCell {
 	
 	var isEditing: Bool = false {
 		didSet {
-			selectionImage.isUserInteractionEnabled = false
-			selectionImage.isHidden = !isEditing
+			containerImageView.setSelectionImage(isEnabled: false, isHidden: isEditing)
 		}
 	}
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		addContainerViewFirst()
-		addContainerViewSecond()
-		addImagePixabay()
-		addStackView()
-		addLikeImage()
-		addSelectionImage()
-		addTargets()
+		addContainerImageView()
 		
 	}
 	
 	override func prepareForReuse() {
 		super.prepareForReuse()
-		likeLabel.text = ""
-		imagePixabay.image = nil
+		containerImageView.prepareReuse()
 		
-	}
-	
-	override func layoutSubviews() {
-		super.layoutSubviews()
-		roundedCorners()
 	}
 	
 	override var isSelected: Bool {
 		didSet {
 			
 			if isEditing {
-				selectionImage.image = isSelected ? UIImage(named: "checked") : UIImage(named: "unchecked")
+				containerImageView.setImage(isSelected: isSelected)
 			}
 		}
 	}
 	
-	private func addSelectionImage() {
-		selectionImage.translatesAutoresizingMaskIntoConstraints = false
-		selectionImage.image = UIImage(named: "unchecked")
-		selectionImage.contentMode = .scaleToFill
-		containerViewSecond.addSubview(selectionImage)
-		
-		selectionImage.topAnchor.constraint(equalTo: containerViewSecond.topAnchor, constant: 6).isActive = true
-		selectionImage.rightAnchor.constraint(equalTo: containerViewSecond.rightAnchor, constant: -6).isActive = true
-		selectionImage.heightAnchor.constraint(equalToConstant: 20).isActive = true
-		selectionImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
-		
+	
+	func selectionImage(with image: String, isEnabled: Bool) {
+		containerImageView.setImage(with: image, isEnabled: isEnabled)
 	}
 	
-	private func addContainerViewFirst() {
-		containerViewFirst.translatesAutoresizingMaskIntoConstraints = false
-		backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-		addSubview(containerViewFirst)
+	private func addContainerImageView() {
+		containerImageView.translatesAutoresizingMaskIntoConstraints = false
+		addSubview(containerImageView)
 		
-		containerViewFirst.topAnchor.constraint(equalTo: topAnchor).isActive = true
-		containerViewFirst.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-		containerViewFirst.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-		containerViewFirst.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+		containerImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		containerImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		containerImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+		containerImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 		
-	}
-	
-	private func addContainerViewSecond() {
-		containerViewSecond.translatesAutoresizingMaskIntoConstraints = false
-		backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-		containerViewFirst.addSubview(containerViewSecond)
-		
-		containerViewSecond.topAnchor.constraint(equalTo: containerViewFirst.topAnchor).isActive = true
-		containerViewSecond.leftAnchor.constraint(equalTo: containerViewFirst.leftAnchor).isActive = true
-		containerViewSecond.rightAnchor.constraint(equalTo: containerViewFirst.rightAnchor).isActive = true
-		containerViewSecond.bottomAnchor.constraint(equalTo: containerViewFirst.bottomAnchor).isActive = true
-		
-	}
-	
-	private func addImagePixabay() {
-		imagePixabay.translatesAutoresizingMaskIntoConstraints = false
-		imagePixabay.contentMode = .scaleAspectFill
-		containerViewSecond.addSubview(imagePixabay)
-		
-		imagePixabay.topAnchor.constraint(equalTo: containerViewSecond.topAnchor).isActive = true
-		imagePixabay.leftAnchor.constraint(equalTo: containerViewSecond.leftAnchor).isActive = true
-		imagePixabay.rightAnchor.constraint(equalTo: containerViewSecond.rightAnchor).isActive = true
-		imagePixabay.bottomAnchor.constraint(equalTo: containerViewSecond.bottomAnchor).isActive = true
-		
-		
-	}
-	
-	private func addStackView() {
-		stackView.translatesAutoresizingMaskIntoConstraints = false
-		stackView.axis = .horizontal
-		stackView.spacing = 3
-		stackView.distribution = .fill
-		stackView.alignment = .fill
-		containerViewSecond.addSubview(stackView)
-		
-		stackView.rightAnchor.constraint(equalTo: containerViewFirst.rightAnchor, constant: -6).isActive = true
-		stackView.bottomAnchor.constraint(equalTo: containerViewFirst.bottomAnchor, constant: -4).isActive = true
-		
-	}
-	
-	private func addLikeImage() {
-		likeImage.translatesAutoresizingMaskIntoConstraints = false
-		likeImage.contentMode = .scaleAspectFit
-		likeImage.image = UIImage(named: "like")
-		stackView.addArrangedSubview(likeImage)
-		
-		likeImage.heightAnchor.constraint(equalToConstant: 13).isActive = true
-		likeImage.widthAnchor.constraint(equalToConstant: 15).isActive = true
-		
-	}
-	
-	private func addLikeLabel() {
-		likeLabel.translatesAutoresizingMaskIntoConstraints = false
-		likeLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-		likeLabel.text = "10000"
-		likeLabel.font = UIFont.boldSystemFont(ofSize: 12)
-		stackView.addArrangedSubview(likeLabel)
-		
-	}
-	
-	// MARK: - Actions
-	
-	private func addTargets() {
-		selectionImage.addGestureRecognizer(UITapGestureRecognizer(target: self,
-																															 action: #selector(addButtonPressed)))
-		selectionImage.isUserInteractionEnabled = true
-	}
-	
-	@objc private func addButtonPressed(_ sender: UIButton) {
-		if let index = index {
-			selectionImage.image = UIImage(named: "checked")
-			delegate?.selectedSaveImage(at: index)
-		}
 	}
 	
 	private func configure(_ image: PixabayImage?) {
 		guard let image = image else { return }
-		likeLabel.text = String(image.likes)
-		imagePixabay.setImage(fromString: image.webformatURL, placeholder: UIImage(named: "logo_square"))
-		
+		containerImageView.set(with: String(image.likes), image: image.webformatURL)
 	}
 	
 	fileprivate func configure(_ image: Image?) {
 		guard let image = image else { return }
-		likeLabel.text = String(image.likeCount!)
-		imagePixabay.setImage(fromString: image.webformatUrl, placeholder: UIImage(named: "logo_square"))
-		
+		containerImageView.set(with: String(image.likeCount!), image: image.webformatUrl)
 	}
-	
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-}
-
-private extension ImageCollectionCell {
-	private func roundedCorners() {
-		containerViewFirst.layer.cornerRadius = 9
-		containerViewFirst.layer.shadowOpacity = 0.70
-		containerViewFirst.layer.shadowOffset = CGSize(width: 0, height: 5)
-		containerViewFirst.layer.shadowRadius = 5
-		
-		containerViewSecond.layer.cornerRadius = 9
-		containerViewSecond.clipsToBounds = true
-		
 	}
 }

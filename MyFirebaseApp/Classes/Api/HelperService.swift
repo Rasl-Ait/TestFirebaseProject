@@ -22,15 +22,15 @@ class HelperService {
 			} else {
 				
 			}
-
+			
 			ref.removeAllObservers()
 		}
 	}
 	
 	static func sendDataToDatabase(with model: Image, onSuccess: @escaping VoidClosure) {
 		
-	
-
+		
+		
 		guard let newImageId = Api.Image.REF_IMAGES.childByAutoId().key else { return }
 		let newImagetRef = Api.Image.REF_IMAGES.child(newImageId)
 		guard let currentUser = Api.User.CURRENT_USER  else { return }
@@ -61,21 +61,19 @@ class HelperService {
 	
 	static func sendDataRemoveToDatabase(with model: Image, onSuccess: @escaping VoidClosure) {
 		
-//		let reference = Api.Image.REF_IMAGES.child(model.userId!)
-//		reference.removeValue { error, _ in
-//
-//			if let error = error {
-//					print(error.localizedDescription)
-//			}
-//
-//		}
+		//		let reference = Api.Image.REF_IMAGES.child(model.userId!)
+		//		reference.removeValue { error, _ in
+		//
+		//			if let error = error {
+		//					print(error.localizedDescription)
+		//			}
+		//
+		//		}
 		
-		
-
 		model.ref?.removeValue()
 		onSuccess()
 		
 	}
-
+	
 }
 

@@ -2,8 +2,8 @@
 import Foundation
 
 extension HTTPURLResponse {
-    var hasSuccessStatusCode: Bool {
-        return 200...299 ~= statusCode
-    }
+	var hasSuccessStatusCode: Bool {
+		return 200...299 ~= statusCode
+	}
 }
 

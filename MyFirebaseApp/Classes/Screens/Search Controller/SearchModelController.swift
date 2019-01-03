@@ -10,8 +10,7 @@ import Foundation
 
 
 protocol SearchModelControllerDelegate: class {
-	func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?,
-												images: [PixabayImage])
+	func onFetchCompleted(with newIndexPathsToReload: [IndexPath]?, images: [PixabayImage])
 	func onFetchFailed(with reason: String)
 }
 

@@ -46,15 +46,9 @@ class WelcomeContainerView: UIView {
 		stackView.spacing = 50
 		addSubview(stackView)
 		
-		stackView.anchor(top: topAnchor,
-										 left: leftAnchor,
-										 bottom: bottomAnchor,
-										 right: rightAnchor,
-										 paddingTop: 0,
-										 paddingLeft: 16,
-										 paddingBottom: 20,
-										 paddingRight: 16,
-										 width: 0, height: 0)
+		stackView.anchor(top: topAnchor,  left: leftAnchor, bottom: bottomAnchor,
+										 right: rightAnchor, paddingTop: 0,  paddingLeft: 16,
+										 paddingBottom: 20, paddingRight: 16, width: 0, height: 0)
 		
 		
 	}
@@ -84,7 +78,7 @@ class WelcomeContainerView: UIView {
 		stackViewButton.addArrangedSubview(googleButton)
 		
 	}
-
+	
 	private func addSignInLabel() {
 		signInLabel.text = "Sign In"
 		signInLabel.font = UIFont.boldSystemFont(ofSize: 20)
@@ -92,7 +86,7 @@ class WelcomeContainerView: UIView {
 		stackView.addArrangedSubview(signInLabel)
 		
 	}
-
+	
 	// MARK: - Actions
 	
 	private func addTargets(){
@@ -116,8 +110,6 @@ class WelcomeContainerView: UIView {
 		delegate?.googleTappedButton()
 		
 	}
-	
-	
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")

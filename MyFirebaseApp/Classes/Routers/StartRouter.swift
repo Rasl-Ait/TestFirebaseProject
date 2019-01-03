@@ -9,22 +9,22 @@
 import UIKit
 
 final class StartRouter {
-    static let shared = StartRouter()
-    
-    private init() {}
-    
-    func goToRegisterScreen(from source: UIViewController) {
-        let vc = RegisterController()
-        source.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func goTologinScreen(from source: UIViewController) {
-        let vc = LoginController()
-        source.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func goToTabBarScrenn(from source: UIViewController) {
-        let tabBar = TabBarController()
-        source.present(tabBar, animated: true, completion: nil)
-    }
+	static let shared = StartRouter()
+	
+	private init() {}
+	
+	func goToRegisterScreen(from source: UIViewController) {
+		let vc = RegisterController()
+		source.navigationController?.pushViewController(vc, animated: true)
+	}
+	
+	func goTologinScreen(from source: UIViewController) {
+		let vc = LoginController()
+		source.navigationController?.pushViewController(vc, animated: true)
+	}
+	
+	func goToTabBarScrenn(from source: UIViewController) {
+		let tabBar = TabBarController()
+		source.present(tabBar, animated: true, completion: nil)
+	}
 }

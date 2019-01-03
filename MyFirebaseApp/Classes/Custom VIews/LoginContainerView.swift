@@ -48,15 +48,9 @@ class LoginContainerView: UIView {
 		stackView.spacing = 40
 		addSubview(stackView)
 		
-		stackView.anchor(top: topAnchor,
-										 left: leftAnchor,
-										 bottom: bottomAnchor,
-										 right: rightAnchor,
-										 paddingTop: 0,
-										 paddingLeft: 16,
-										 paddingBottom: 0,
-										 paddingRight: 16,
-										 width: 0, height: 0)
+		stackView.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor,
+										 right: rightAnchor, paddingTop: 0, paddingLeft: 16,
+										 paddingBottom: 0, paddingRight: 16, width: 0, height: 0)
 		
 	}
 	

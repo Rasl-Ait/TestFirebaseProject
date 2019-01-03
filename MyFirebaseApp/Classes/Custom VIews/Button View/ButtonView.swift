@@ -26,7 +26,7 @@ class ButtonView: UIView {
 		
 	}
 	
-
+	
 	private func addTargets() {
 		saveButton.addTarget(self, action: #selector(savebuttonTapped(sender:)), for: .touchUpInside)
 		logOutButton.addTarget(self, action: #selector(logOutButton(sender:)), for: .touchUpInside)
@@ -41,15 +41,15 @@ class ButtonView: UIView {
 	}
 	
 	private func addSaveButton () {
-	  saveButton.setTitle("Save", for: .normal)
+		saveButton.setTitle("Save", for: .normal)
 		saveButton.setTitleColor(.black, for: .normal)
 		saveButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
 		addSubview(saveButton)
 		
 		
 		saveButton.anchor(top: topAnchor, left: leftAnchor, bottom: nil,
-												 right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0,
-												 paddingRight: 0, width: 0, height: 0)
+											right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0,
+											paddingRight: 0, width: 0, height: 0)
 		
 	}
 	
@@ -73,8 +73,8 @@ class ButtonView: UIView {
 		addSubview(logOutButton)
 		
 		logOutButton.anchor(top: separateView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor,
-													right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0,
-													paddingRight: 0, width: 0, height: 0)
+												right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0,
+												paddingRight: 0, width: 0, height: 0)
 		
 	}
 }

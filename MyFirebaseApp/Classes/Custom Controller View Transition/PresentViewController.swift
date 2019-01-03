@@ -1,10 +1,4 @@
-//
-//  PresentDetailViewController.swift
-//  MyMovieProject
-//
-//  Created by rasl on 02.11.2018.
-//  Copyright © 2018 rasl. All rights reserved.
-//
+
 
 import UIKit
 

@@ -23,6 +23,7 @@ class InfoUserCell: UITableViewCell {
 	var model: RegisterModel? {
 		didSet {
 			configure(model)
+			textChanged(model: model)
 		}
 	}
 	
@@ -59,6 +60,11 @@ class InfoUserCell: UITableViewCell {
 	private func addPhotoView() {
 		photoView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(photoView)
+		
+//		let constraints = NSLayoutConstraint.contraints(withNewVisualFormat: "H:|[photoView]|,V:[photoView]|",
+//																										dict: ["photoView": photoView])
+//		
+//		addConstraints(constraints)
 		
 		photoView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 		photoView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true

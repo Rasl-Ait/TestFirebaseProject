@@ -16,7 +16,7 @@ class FavoriteController: UICollectionViewController {
 	private var trashButton = UIBarButtonItem()
 	
 	private let transition = PresentViewController()
-	 private var selectedImage: UIImageView?
+	private var selectedImage: UIImageView?
 	
 	private var images: [Image] = []
 	private let minItemSpacing = 5.5
@@ -85,8 +85,6 @@ class FavoriteController: UICollectionViewController {
 																									for: indexPath) as! ImageCollectionCell
 		
 		let image = images[indexPath.row]
-		
-		cell.index = indexPath.item
 		cell.image = image
 		cell.isEditing = isEditing
 		
@@ -98,14 +96,13 @@ class FavoriteController: UICollectionViewController {
 	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		if !isEditing {
 			guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
-			selectedImage = cell.imagePixabay
-	
+			selectedImage = cell.containerImageView.imagePixabay
+			
 			let modelImage = images[indexPath.row]
 			let vc = ImageDetailController()
-		  vc.modelImage = modelImage
+			vc.modelImage = modelImage
 			vc.transitioningDelegate = self
 			present(vc, animated: true, completion: nil)
-			
 			
 		} else {
 			trashButton.isEnabled = true

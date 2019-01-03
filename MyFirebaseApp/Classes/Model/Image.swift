@@ -27,7 +27,7 @@ class Image {
 			"userImageUrl": userImageUrl ?? "",
 			"webformatUrl": webformatUrl ?? "",
 			"largeImageUrl": largeImageUrl ?? ""
-
+			
 		]
 	}
 }
@@ -46,5 +46,17 @@ extension Image {
 		
 		return image
 		
+	}
+	
+	static func saveImageData(with model: PixabayImage) -> Image {
+		let image = Image()
+		image.id = model.id
+		image.largeImageUrl = model.largeImageURL
+		image.username = model.user
+		image.likeCount = model.likes
+		image.webformatUrl = model.webformatURL
+		image.userImageUrl = model.userImageURL
+		
+		return image
 	}
 }

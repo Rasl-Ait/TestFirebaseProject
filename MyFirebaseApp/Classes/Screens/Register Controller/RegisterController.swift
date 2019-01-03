@@ -12,7 +12,6 @@ import ARSLineProgress
 class RegisterController: UIViewController {
 	
 	private let userModel = RegisterModel()
-	
 	private var selectedImage: UIImage?
 	private let button = UIButton()
 	
@@ -80,15 +79,9 @@ private extension RegisterController {
 	
 	private func addContainerView() {
 		view.addSubview(containerView)
-		containerView.anchor(top: view.topAnchor,
-												 left: view.leftAnchor,
-												 bottom: nil,
-												 right: view.rightAnchor,
-												 paddingTop: 150,
-												 paddingLeft: 0,
-												 paddingBottom: 0,
-												 paddingRight: 0,
-												 width: 0, height: 0)
+		containerView.anchor(top: view.topAnchor, left: view.leftAnchor,  bottom: nil,
+												 right: view.rightAnchor, paddingTop: 150, paddingLeft: 0,
+												 paddingBottom: 0, paddingRight: 0,  width: 0, height: 0)
 		
 	}
 	
@@ -110,15 +103,9 @@ private extension RegisterController {
 		button.setAttributedTitle(attributedText, for: .normal)
 		view.addSubview(button)
 		
-		button.anchor(top: nil,
-									left: view.leftAnchor,
-									bottom: view.bottomAnchor,
-									right: view.rightAnchor,
-									paddingTop: 0,
-									paddingLeft: 16,
-									paddingBottom: 20,
-									paddingRight: 16,
-									width: 0, height: 0)
+		button.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor,
+									right: view.rightAnchor, 	paddingTop: 0, paddingLeft: 16,
+									paddingBottom: 20, paddingRight: 16, width: 0, height: 0)
 		
 		
 	}

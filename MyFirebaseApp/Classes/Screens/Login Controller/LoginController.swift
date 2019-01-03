@@ -74,15 +74,9 @@ private extension LoginController {
 	
 	private func addContainerView() {
 		view.addSubview(containerView)
-		containerView.anchor(top: view.topAnchor,
-												 left: view.leftAnchor,
-												 bottom: nil,
-												 right: view.rightAnchor,
-												 paddingTop: 150,
-												 paddingLeft: 0,
-												 paddingBottom: 0,
-												 paddingRight: 0,
-												 width: 0, height: 0)
+		containerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil,
+												 right: view.rightAnchor, paddingTop: 150, paddingLeft: 0,
+												 paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
 		
 	}
 	
@@ -104,15 +98,9 @@ private extension LoginController {
 		button.setAttributedTitle(attributedText, for: .normal)
 		view.addSubview(button)
 		
-		button.anchor(top: nil,
-									left: view.leftAnchor,
-									bottom: view.bottomAnchor,
-									right: view.rightAnchor,
-									paddingTop: 0,
-									paddingLeft: 16,
-									paddingBottom: 20,
-									paddingRight: 16,
-									width: 0, height: 0)
+		button.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor,
+									right: view.rightAnchor, paddingTop: 0, paddingLeft: 16,
+									paddingBottom: 20, paddingRight: 16, width: 0, height: 0)
 		
 		
 	}
@@ -127,10 +115,10 @@ extension LoginController: LoginContainerViewDelegate {
 		AuthService.signIn(with: authModel) { result in
 			switch result {
 			case .success:
-			ProgressHUD.showSuccess("Success")
+				ProgressHUD.showSuccess("Success")
 				StartRouter.shared.goToTabBarScrenn(from: self)
 			case .error(let error):
-					ProgressHUD.showError(error)
+				ProgressHUD.showError(error)
 			}
 		}
 	}

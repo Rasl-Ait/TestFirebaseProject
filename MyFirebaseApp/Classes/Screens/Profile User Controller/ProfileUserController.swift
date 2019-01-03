@@ -65,7 +65,7 @@ private extension ProfileUserController {
 	private func loadUser() {
 		guard let userId = Api.User.CURRENT_USER?.uid else { fatalError() }
 		Api.User.observeUser(withId: userId) { user in
-     self.registerModel = user
+			self.registerModel = user
 			
 			DispatchQueue.main.async {
 				self.tableView.reloadData()
@@ -166,10 +166,9 @@ extension ProfileUserController: UITableViewDataSource {
 		case .userInfo:
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoUserCell.reuseIdentifier,
 																										 for: indexPath) as? InfoUserCell else { fatalError() }
-
+			
 			cell.model = registerModel
 			cell.set(image: registerModel.profileImageUrl)
-			cell.textChanged(model: registerModel)
 			cell.photoViewClicked = self.photoViewClicked
 			return cell
 		case .birthday:
