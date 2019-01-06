@@ -2,9 +2,9 @@
 
 The App is fully implemented through code without StoryBoards with using database Realm
 
-Added ability authorization via Facebook and Goolge
-Added ability save images to the library
-Added the ability to remove images from firebase
+- Added ability authorization via Facebook and Goolge
+- Added ability save images to the library
+- Added the ability to remove images from firebase
 
 ## Demonstration App
 
