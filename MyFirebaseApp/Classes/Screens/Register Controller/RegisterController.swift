@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ARSLineProgress
 
 class RegisterController: UIViewController {
 	
@@ -19,6 +18,12 @@ class RegisterController: UIViewController {
 		let view = RegisterContainerVIew()
 		view.delegate = self
 		return view
+	}()
+	
+	lazy var photoPickerManager: PhotoPickerManager = {
+		let pickerManager = PhotoPickerManager(presentingController: self)
+		pickerManager.delegate = self
+		return pickerManager
 	}()
 	
 	override func viewDidLoad() {
@@ -63,17 +68,17 @@ private extension RegisterController {
 	}
 	
 	private func saveUserModel() {
-		containerView.usernameTextChanged = { text in
-			self.userModel.username = text
-			self.updateDoneButtonStatus()
+		containerView.usernameTextChanged = { [weak self] text in
+			self?.userModel.username = text
+			self?.updateDoneButtonStatus()
 		}
-		containerView.emailTextChanged = { text in
-			self.userModel.email = text
-			self.updateDoneButtonStatus()
+		containerView.emailTextChanged = { [weak self] text in
+			self?.userModel.email = text
+			self?.updateDoneButtonStatus()
 		}
-		containerView.passwordTextChanged = { text in
-			self.userModel.password = text
-			self.updateDoneButtonStatus()
+		containerView.passwordTextChanged = { [weak self] text in
+			self?.userModel.password = text
+			self?.updateDoneButtonStatus()
 		}
 	}
 	
@@ -127,30 +132,18 @@ extension RegisterController: RegisterContainerVIewDelegate {
 	}
 	
 	func addImage() {
-		let pickerController = UIImagePickerController()
-		pickerController.delegate = self
-		pickerController.sourceType = .photoLibrary
-		present(pickerController, animated: true, completion: nil)
+		photoPickerManager.presentPhotoPicker(animated: true)
 	}
 }
 
-// MARK: -  UIImagePickerControllerDelegate
+// MARK: - PhotoPickerManagerDelegate
 
-extension RegisterController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+extension RegisterController: PhotoPickerManagerDelegate {
+	func manager(_ manager: PhotoPickerManager, didPickImage image: UIImage) {
+		manager.dismissPhotoPicker(animated: true, completion: nil)
 		
-		guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-			return
-		}
-		
-		picker.dismiss(animated: true, completion: nil)
 		userModel.profileImageUrl = image
 		containerView.set(image: userModel.profileImageUrl)
-		
-	}
-	
-	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		picker.dismiss(animated: true, completion: nil)
 		
 	}
 }

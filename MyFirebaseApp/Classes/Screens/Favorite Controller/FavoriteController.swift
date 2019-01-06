@@ -67,47 +67,6 @@ class FavoriteController: UICollectionViewController {
 			
 		}
 	}
-	
-	// MARK: - Collection view data source
-	
-	override func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return 1
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return images.count
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView,
-															 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.reuseIdentifier,
-																									for: indexPath) as! ImageCollectionCell
-		
-		let image = images[indexPath.row]
-		cell.image = image
-		cell.isEditing = isEditing
-		
-		return cell
-	}
-	
-	// MARK: - Collection view delegate
-	
-	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		if !isEditing {
-			guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
-			selectedImage = cell.containerImageView.imagePixabay
-			
-			let modelImage = images[indexPath.row]
-			let vc = ImageDetailController()
-			vc.modelImage = modelImage
-			vc.transitioningDelegate = self
-			present(vc, animated: true, completion: nil)
-			
-		} else {
-			trashButton.isEnabled = true
-		}
-	}
 }
 
 // MARK: - FavoriteController
@@ -188,6 +147,51 @@ private extension FavoriteController {
 	}
 }
 
+// MARK: - Collection view data source
+
+extension FavoriteController {
+	override func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return images.count
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView,
+															 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.reuseIdentifier,
+																									for: indexPath) as! ImageCollectionCell
+		
+		let image = images[indexPath.row]
+		cell.image = image
+		cell.isEditing = isEditing
+		
+		return cell
+	}
+}
+
+// MARK: - Collection view delegate
+
+extension FavoriteController {
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		if !isEditing {
+			guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
+			selectedImage = cell.containerImageView.imagePixabay
+			
+			let modelImage = images[indexPath.row]
+			let vc = ImageViewerController()
+			vc.modelImage = modelImage
+			vc.transitioningDelegate = self
+			present(vc, animated: true, completion: nil)
+			
+		} else {
+			trashButton.isEnabled = true
+		}
+	}
+}
+
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension FavoriteController: UICollectionViewDelegateFlowLayout {
@@ -216,7 +220,6 @@ extension FavoriteController: UICollectionViewDelegateFlowLayout {
 		
 	}
 }
-
 
 // MARK: - UIViewControllerTransitioningDelegate
 

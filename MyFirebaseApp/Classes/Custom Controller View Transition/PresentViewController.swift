@@ -27,7 +27,7 @@ class PresentViewController: NSObject, UIViewControllerAnimatedTransitioning {
 		let yScaleFactor = presenting ? initialFrame.height / finalFrame.height : finalFrame.height / initialFrame.height
 		let scaleTransform = CGAffineTransform(scaleX: xScaleFactor, y: yScaleFactor)
 		
-		let destinationController = transitionContext.viewController(forKey: presenting ? .to : .from) as! ImageDetailController
+		let destinationController = transitionContext.viewController(forKey: presenting ? .to : .from) as! ImageViewerController
 		
 		if presenting {
 			detailView.transform = scaleTransform

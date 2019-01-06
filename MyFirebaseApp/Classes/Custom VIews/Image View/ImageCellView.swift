@@ -1,5 +1,5 @@
 //
-//  ImageView.swift
+//  ImageCellView.swift
 //  MyFirebaseApp
 //
 //  Created by rasl on 02.01.2019.

@@ -60,17 +60,11 @@ class InfoUserCell: UITableViewCell {
 	private func addPhotoView() {
 		photoView.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(photoView)
-		
-//		let constraints = NSLayoutConstraint.contraints(withNewVisualFormat: "H:|[photoView]|,V:[photoView]|",
-//																										dict: ["photoView": photoView])
-//		
-//		addConstraints(constraints)
-		
+
 		photoView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 		photoView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		photoView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		photoView.bottomAnchor.constraint(equalTo: textFieldInfo.topAnchor).isActive = true
-		
 		photoView.heightAnchor.constraint(equalToConstant: 200).isActive = true
 		
 	}
@@ -78,12 +72,10 @@ class InfoUserCell: UITableViewCell {
 	private func addTextFieldInfo() {
 		textFieldInfo.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(textFieldInfo)
-		
-		//textFieldInfo.topAnchor.constraint(equalTo: photoView.bottomAnchor).isActive = true
+
 		textFieldInfo.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		textFieldInfo.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
 		textFieldInfo.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-		
 		textFieldInfo.heightAnchor.constraint(equalToConstant: 88).isActive = true
 		
 	}

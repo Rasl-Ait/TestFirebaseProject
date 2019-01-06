@@ -1,5 +1,4 @@
 PODS:
-  - ARSLineProgress (3.1.0)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
     - Bolts/Tasks (= 1.9.0)
@@ -98,7 +97,6 @@ PODS:
   - nanopb/encode (0.3.8)
 
 DEPENDENCIES:
-  - ARSLineProgress
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
@@ -109,7 +107,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - ARSLineProgress
     - Bolts
     - FBSDKCoreKit
     - FBSDKLoginKit
@@ -131,7 +128,6 @@ SPEC REPOS:
     - nanopb
 
 SPEC CHECKSUMS:
-  ARSLineProgress: 60778657c69491796c3faf5b834c72924c405833
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   FBSDKCoreKit: fe5f3474499a81963e11e3f3a5c753d0a95ca2b4
   FBSDKLoginKit: 2f7249686d1e30ce8a5ef5400eedf50b3e3df332
@@ -152,6 +148,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 1b61fe97b0fcceac656ca72f6ec22ab118844673
+PODFILE CHECKSUM: 488ce21fe1b4314fb3103e451ed933a6950efe70
 
 COCOAPODS: 1.5.3

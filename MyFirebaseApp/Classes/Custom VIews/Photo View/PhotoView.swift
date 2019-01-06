@@ -8,8 +8,9 @@
 
 final class PhotoView: UIView {
 	private let stackView = UIStackView()
-	private let imageView = UIImageView()
+	private let placeHolderImage = UIImageView()
 	private var button = UIButton()
+	private let imageView = UIImageView()
 	
 	var clicked: VoidClosure?
 	
@@ -17,6 +18,7 @@ final class PhotoView: UIView {
 		super.didMoveToSuperview()
 		Decorator.decorate(self)
 		addButton()
+		addplaceHolderImage()
 		addImageView()
 		addTargets()
 	}
@@ -39,6 +41,18 @@ final class PhotoView: UIView {
 		
 	}
 	
+	private func addImageView() {
+		imageView.translatesAutoresizingMaskIntoConstraints = false
+		imageView.clipsToBounds = true
+		imageView.contentMode = .scaleAspectFill
+		addSubview(imageView)
+		
+		imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+		imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+	}
+	
 	private func addButton() {
 		button = UIButton(type: .system)
 		button.setTitle("Change Profile Photo", for: .normal)
@@ -49,17 +63,17 @@ final class PhotoView: UIView {
 		addConstraints(constraints)
 	}
 	
-	private func addImageView() {
-		imageView.translatesAutoresizingMaskIntoConstraints = false
-		imageView.contentMode = .scaleAspectFill
-		imageView.image = #imageLiteral(resourceName: "placeholderImg.jpeg")
-		imageView.clipsToBounds = true
-		addSubview(imageView)
+	private func addplaceHolderImage() {
+		placeHolderImage.translatesAutoresizingMaskIntoConstraints = false
+		placeHolderImage.contentMode = .scaleAspectFill
+		placeHolderImage.image = #imageLiteral(resourceName: "placeholderImg.jpeg")
+		placeHolderImage.clipsToBounds = true
+		addSubview(placeHolderImage)
 		
-		imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-		imageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-		imageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-		imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+		placeHolderImage.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+		placeHolderImage.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+		placeHolderImage.heightAnchor.constraint(equalToConstant: 100).isActive = true
+		placeHolderImage.widthAnchor.constraint(equalToConstant: 100).isActive = true
 		
 	}
 	
@@ -78,6 +92,7 @@ extension PhotoView {
 		
 		static func layoutSubviews(_ view: PhotoView) {
 			view.imageView.round()
+			view.placeHolderImage.round()
 		}
 	}
 }

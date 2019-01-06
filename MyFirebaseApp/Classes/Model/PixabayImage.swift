@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct PixabayImage: Decodable {
+struct PixabayImage: Decodable, Equatable {
 	let largeImageURL: String
 	let webformatHeight, webformatWidth, likes, imageWidth: Int
 	let id, userId, views, comments: Int
@@ -23,6 +23,10 @@ struct PixabayImage: Decodable {
 	let favorites, imageSize, previewWidth: Int
 	let userImageURL: String
 	let previewURL: String
+	
+	static func == (lhs: PixabayImage, rhs: PixabayImage) -> Bool{
+		return lhs.largeImageURL == rhs.largeImageURL
+	}
 	
 }
 

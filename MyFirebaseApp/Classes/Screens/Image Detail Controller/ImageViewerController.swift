@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageDetailController: UIViewController, AlertDisplayer {
+class ImageViewerController: UIViewController, AlertDisplayer {
 	
 	let containerContent = UIView()
 	private let pixabayImage = UIImageView()
@@ -47,7 +47,7 @@ class ImageDetailController: UIViewController, AlertDisplayer {
 	}
 	
 	@objc private func saveButtonTapped(sender: UIButton) {
-			UIImageWriteToSavedPhotosAlbum(pixabayImage.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+		UIImageWriteToSavedPhotosAlbum(pixabayImage.image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
 	}
 	
 	@objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
@@ -60,7 +60,7 @@ class ImageDetailController: UIViewController, AlertDisplayer {
 }
 
 
-private extension ImageDetailController {
+private extension ImageViewerController {
 	private func initialized() {
 		view.backgroundColor = .white
 		addBackgroudImage()
@@ -144,9 +144,9 @@ private extension ImageDetailController {
 		containerContent.addSubview(saveButton)
 		
 		saveButton.anchor(top: closeButton.bottomAnchor, left: nil,  bottom: nil,
-											 right: containerContent.rightAnchor,
-											 paddingTop: 6, paddingLeft: 0, paddingBottom: 0,
-											 paddingRight: 8, width: 36, height: 36)
+											right: containerContent.rightAnchor,
+											paddingTop: 6, paddingLeft: 0, paddingBottom: 0,
+											paddingRight: 8, width: 36, height: 36)
 		
 	}
 	

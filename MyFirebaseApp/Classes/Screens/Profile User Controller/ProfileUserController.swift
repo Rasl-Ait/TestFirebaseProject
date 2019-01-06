@@ -11,8 +11,14 @@ import UIKit
 class ProfileUserController: UIViewController {
 	
 	private let tableView = UITableView()
-	private let models: [HeaderModel] = [.info, .birthday]
+	private let models: [HeaderModel] = [.info, .button]
 	private var registerModel = RegisterModel()
+	
+	lazy var photoPickerManager: PhotoPickerManager = {
+		let pickerManager = PhotoPickerManager(presentingController: self)
+		pickerManager.delegate = self
+		return pickerManager
+	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -36,18 +42,18 @@ extension ProfileUserController {
 extension ProfileUserController {
 	fileprivate enum CellModel {
 		case userInfo
-		case birthday
+		case button
 	}
 	
 	fileprivate enum HeaderModel: CellHeaderProtocol {
 		typealias CellType = CellModel
 		case info
-		case birthday
+		case button
 		
 		var cellModels: [ProfileUserController.CellModel] {
 			switch self {
 			case .info: return [.userInfo]
-			case .birthday: return [.birthday]
+			case .button: return [.button]
 			}
 		}
 	}
@@ -59,19 +65,16 @@ private extension ProfileUserController {
 		Decorator.decorate(vc: self)
 		registerCells()
 		setupTableView()
-		loadUser()
+		//loadUser()
 	}
 	
-	private func loadUser() {
-		guard let userId = Api.User.CURRENT_USER?.uid else { fatalError() }
-		Api.User.observeUser(withId: userId) { user in
-			self.registerModel = user
-			
-			DispatchQueue.main.async {
-				self.tableView.reloadData()
-			}
-		}
-	}
+//	private func loadUser() {
+//		guard let userId = Api.User.CURRENT_USER?.uid else { fatalError() }
+//		Api.User.observeUser(withId: userId) { user in
+//			self.registerModel = user
+//			self.tableView.reloadData()
+//		}
+//	}
 	
 	private func registerCells() {
 		tableView.register(InfoUserCell.self, forCellReuseIdentifier: InfoUserCell.reuseIdentifier)
@@ -90,10 +93,7 @@ private extension ProfileUserController {
 	}
 	
 	private func photoViewClicked() {
-		let imagePickerController = UIImagePickerController()
-		imagePickerController.delegate = self
-		imagePickerController.sourceType = .photoLibrary
-		present(imagePickerController, animated: true, completion: nil)
+		photoPickerManager.presentPhotoPicker(animated: true)
 	}
 	
 	private func saveButtonClicked() {
@@ -129,7 +129,7 @@ extension ProfileUserController: UITableViewDelegate {
 		switch model {
 		case .userInfo:
 			return 288
-		case .birthday:
+		case .button:
 			return 88
 		}
 	}
@@ -145,7 +145,7 @@ extension ProfileUserController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 		let headerModel = models[section]
 		switch headerModel {
-		case .birthday:
+		case .button:
 			return 44
 		default: return 0
 		}
@@ -167,11 +167,15 @@ extension ProfileUserController: UITableViewDataSource {
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: InfoUserCell.reuseIdentifier,
 																										 for: indexPath) as? InfoUserCell else { fatalError() }
 			
-			cell.model = registerModel
+			guard let userId = Api.User.CURRENT_USER?.uid else { fatalError() }
+			Api.User.observeUser(withId: userId) { user in
+			cell.model = user
+			}
+		
 			cell.set(image: registerModel.profileImageUrl)
 			cell.photoViewClicked = self.photoViewClicked
 			return cell
-		case .birthday:
+		case .button:
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: ButtonCell.reuseIdentifier,
 																										 for: indexPath) as? ButtonCell else { fatalError() }
 			
@@ -184,15 +188,16 @@ extension ProfileUserController: UITableViewDataSource {
 	}
 }
 
+// MARK: - PhotoPickerManagerDelegate
 
-extension ProfileUserController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-		picker.dismiss(animated: true, completion: nil)
-		guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-			return
-		}
+extension ProfileUserController: PhotoPickerManagerDelegate {
+	func manager(_ manager: PhotoPickerManager, didPickImage image: UIImage) {
+		manager.dismissPhotoPicker(animated: true, completion: nil)
 		
 		registerModel.profileImageUrl = image
 		tableView.reloadData()
+		
 	}
 }
+
+

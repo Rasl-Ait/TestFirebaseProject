@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ARSLineProgress
 
 class LoginController: UIViewController {
 	
@@ -62,13 +61,13 @@ private extension LoginController {
 	}
 	
 	private func authUserModel() {
-		containerView.emailTextChanged = { text in
-			self.authModel.email = text
-			self.updateDoneButtonStatus()
+		containerView.emailTextChanged = { [weak self] text in
+			self?.authModel.email = text
+			self?.updateDoneButtonStatus()
 		}
-		containerView.passwordTextChanged = { text in
-			self.authModel.password = text
-			self.updateDoneButtonStatus()
+		containerView.passwordTextChanged = { [weak self] text in
+			self?.authModel.password = text
+			self?.updateDoneButtonStatus()
 		}
 	}
 	

@@ -46,10 +46,6 @@ extension RegisterModel {
 		user.username = dict["username"] as? String
 		user.password = dict["password"] as? String
 		user.id = key
-		
-		guard let image = user.image else { fatalError() }
-		
-		user.profileImageUrl = UIImage(named: image)
 		return user
 	}
 }

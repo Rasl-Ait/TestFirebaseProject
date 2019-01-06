@@ -10,8 +10,6 @@ target 'MyFirebaseApp' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
-	pod 'ARSLineProgress'
-	
 
   # Pods for Facebook
   pod 'FBSDKLoginKit'

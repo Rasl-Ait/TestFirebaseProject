@@ -28,71 +28,6 @@ class SearchController: UICollectionViewController {
 		return .lightContent
 		
 	}
-	
-	// MARK: - Collection view data source
-	
-	override func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return 1
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return viewModel.imageCont
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView,
-															 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.reuseIdentifier,
-																									for: indexPath) as! ImageCollectionCell
-		
-		let image = viewModel.images(at: indexPath)
-		
-		let ref = Api.Image.REF_IMAGES.queryOrdered(byChild: "id").queryEqual(toValue: image.id)
-		
-		ref.observe(.value) { (snapshot)  in
-			if snapshot.exists() {
-				cell.selectionImage(with: "checked", isEnabled: false)
-			} else {
-				cell.selectionImage(with: "unchecked", isEnabled: true)
-			}
-			
-			ref.removeAllObservers()
-		}
-		
-		cell.buttonClicked = { _ in
-			let index = indexPath.item
-			self.selectedSaveImage(with: index)
-			
-		}
-		
-		cell.pixabayImage = image
-		cell.delegate = self
-		
-		return cell
-	}
-	
-	// MARK: - Collection view delegate
-	
-	override func collectionView(_ collectionView: UICollectionView,
-															 willDisplay cell: UICollectionViewCell,
-															 forItemAt indexPath: IndexPath) {
-		
-		if indexPath.row == viewModel.imagesArray.count - 5 {
-			viewModel.fetchSearchImage(true)
-			
-		}
-	}
-	
-	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-			guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
-			selectedImage = cell.containerImageView.imagePixabay
-			
-			let model = viewModel.images(at: indexPath)
-			let vc = ImageDetailController()
-			vc.modelPixabayImage = model
-			vc.transitioningDelegate = self
-			present(vc, animated: true, completion: nil)
-		
-	}
 }
 
 private extension SearchController {
@@ -149,6 +84,76 @@ private extension SearchController {
 		imageModel.userImageUrl = image.userImageURL
 		
 		HelperService.filterDataToDatabase(with: imageModel) {}
+		
+	}
+}
+
+// MARK: - Collection view data source
+
+extension SearchController {
+	override func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return viewModel.imageCont
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView,
+															 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionCell.reuseIdentifier,
+																									for: indexPath) as! ImageCollectionCell
+		
+		let image = viewModel.images(at: indexPath)
+		
+		let ref = Api.Image.REF_IMAGES.queryOrdered(byChild: "id").queryEqual(toValue: image.id)
+		
+		ref.observe(.value) { (snapshot)  in
+			if snapshot.exists() {
+				cell.selectionImage(with: "checked", isEnabled: false)
+			} else {
+				cell.selectionImage(with: "unchecked", isEnabled: true)
+			}
+			
+			ref.removeAllObservers()
+		}
+		
+		cell.buttonClicked = { [weak self] _ in
+			let index = indexPath.item
+			self?.selectedSaveImage(with: index)
+			
+		}
+		
+		cell.pixabayImage = image
+		cell.delegate = self
+		
+		return cell
+	}
+}
+
+// MARK: - Collection view delegate
+
+extension SearchController {
+	override func collectionView(_ collectionView: UICollectionView,
+															 willDisplay cell: UICollectionViewCell,
+															 forItemAt indexPath: IndexPath) {
+		
+		if indexPath.row == viewModel.imagesArray.count - 5 {
+			viewModel.fetchSearchImage(true)
+			
+		}
+	}
+	
+	override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		guard let cell = collectionView.cellForItem(at: indexPath) as? ImageCollectionCell else {return}
+		selectedImage = cell.containerImageView.imagePixabay
+		
+		let model = viewModel.images(at: indexPath)
+		let vc = ImageViewerController()
+		vc.modelPixabayImage = model
+		
+		vc.transitioningDelegate = self
+		present(vc, animated: true, completion: nil)
 		
 	}
 }
