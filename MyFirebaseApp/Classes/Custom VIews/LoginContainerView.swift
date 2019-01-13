@@ -54,7 +54,6 @@ class LoginContainerView: UIView {
 		
 	}
 	
-	
 	private func addStackViewTExtField() {
 		stackViewTextField.axis = .vertical
 		stackViewTextField.distribution = .fill
@@ -70,22 +69,13 @@ class LoginContainerView: UIView {
 	}
 	
 	private func addEmailTextField() {
-		emailTextField.textAlignment = .left
-		emailTextField.borderStyle = .roundedRect
-		emailTextField.attributedPlaceholder = NSAttributedString(string: "Email",
-																															attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)])
-		
+		emailTextField.setupTextField(with: "Email")
 		stackViewTextField.addArrangedSubview(emailTextField)
 		
 	}
 	
 	private func addPasswordTextField() {
-		passwordTextField.borderStyle = .roundedRect
-		passwordTextField.textAlignment = .left
-		passwordTextField.isSecureTextEntry = true
-		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password",
-																																 attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.7540688515, green: 0.7540867925, blue: 0.7540771365, alpha: 1)])
-		
+		passwordTextField.setupTextField(with: "Password")
 		stackViewTextField.addArrangedSubview(passwordTextField)
 		
 	}

@@ -12,6 +12,7 @@
 		DC1B7A5B21CF639100E2BBFD /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B7A5A21CF639100E2BBFD /* ButtonView.swift */; };
 		DC1B7A5E21CF685B00E2BBFD /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B7A5D21CF685B00E2BBFD /* ButtonCell.swift */; };
 		DC1B821B21DE6CB30044E815 /* PhotoPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1B821A21DE6CB30044E815 /* PhotoPickerManager.swift */; };
+		DC498A0021EB81DA00DC77F0 /* Extesnion+UITextFIeld.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4989FF21EB81DA00DC77F0 /* Extesnion+UITextFIeld.swift */; };
 		DC674E7721D67C6700BB7E8D /* AuthResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7621D67C6700BB7E8D /* AuthResult.swift */; };
 		DC674E7921D67C7000BB7E8D /* RegisterErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7821D67C7000BB7E8D /* RegisterErrors.swift */; };
 		DC674E7B21D67CEB00BB7E8D /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC674E7A21D67CEB00BB7E8D /* Validator.swift */; };
@@ -71,6 +72,7 @@
 		DC1B7A5A21CF639100E2BBFD /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		DC1B7A5D21CF685B00E2BBFD /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		DC1B821A21DE6CB30044E815 /* PhotoPickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerManager.swift; sourceTree = "<group>"; };
+		DC4989FF21EB81DA00DC77F0 /* Extesnion+UITextFIeld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extesnion+UITextFIeld.swift"; sourceTree = "<group>"; };
 		DC674E7621D67C6700BB7E8D /* AuthResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthResult.swift; sourceTree = "<group>"; };
 		DC674E7821D67C7000BB7E8D /* RegisterErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterErrors.swift; sourceTree = "<group>"; };
 		DC674E7A21D67CEB00BB7E8D /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 				DCBD7D2A21BA999600ED2BD2 /* AlertDisplayer.swift */,
 				DC98CFAE21B8FAA700EDBB23 /* Extension+UIView.swift */,
 				DC88698021CE40DE00DB0F2A /* Extensions+NSLayoutConstraint.swift */,
+				DC4989FF21EB81DA00DC77F0 /* Extesnion+UITextFIeld.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				DC98CFB121B8FAAF00EDBB23 /* Router.swift in Sources */,
 				DCBD7D2F21BA99B300ED2BD2 /* PixabayImage.swift in Sources */,
 				DC98CFB821B8FB2500EDBB23 /* RegisterController.swift in Sources */,
+				DC498A0021EB81DA00DC77F0 /* Extesnion+UITextFIeld.swift in Sources */,
 				DCBD7D3821BAA5A900ED2BD2 /* ImageCollectionCell.swift in Sources */,
 				DC98CFBC21B8FB2E00EDBB23 /* LoginController.swift in Sources */,
 				DC674E7921D67C7000BB7E8D /* RegisterErrors.swift in Sources */,
@@ -799,7 +803,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/MyFirebaseApp/Resourses/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rasl.MyFirebaseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyFirebaseApp/MyFirebaseApp-Bridging-Header.h";
@@ -817,7 +824,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "$(SRCROOT)/MyFirebaseApp/Resourses/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rasl.MyFirebaseApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyFirebaseApp/MyFirebaseApp-Bridging-Header.h";
